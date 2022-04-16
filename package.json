@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "start": "nx serve",
+    "heroku-postbuild": "ng build api && nx build nx-nest-postgre-manager",
+    "start": "node dist/apps/api/main",
     "build": "nx build",
     "test": "nx test"
   },
@@ -22,6 +23,7 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/serve-static": "^2.2.2",
     "@nrwl/angular": "13.10.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
