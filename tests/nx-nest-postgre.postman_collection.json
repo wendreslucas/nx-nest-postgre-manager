@@ -10,15 +10,33 @@
 			"item": [
 				{
 					"name": "get by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02e61822-0fd7-4405-af08-d063a68904ab",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3333/api/task/2",
+							"raw": "http://127.0.0.1:3333/api/task/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -30,7 +48,7 @@
 							"path": [
 								"api",
 								"task",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -40,7 +58,13 @@
 					"name": "\bget tasks",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -68,7 +92,13 @@
 					"name": "update the status",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -113,6 +143,11 @@
 								"key": "Content-Type",
 								"name": "Content-Type",
 								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -174,6 +209,71 @@
 								"api",
 								"task",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "get token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b6236e61-a90c-4bdb-a726-6d5c68cb6843",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.globals.set(\"access_token\", jsonData.access_token);",
+									"console.log(pm.globals.get(\"access_token\"))",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3333/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"auth",
+								"login"
 							]
 						}
 					},

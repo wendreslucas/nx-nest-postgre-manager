@@ -11,6 +11,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { TaskModule } from './app/task/task.module';
+import { AuthModule } from './app/auth/auth.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -25,12 +26,12 @@ async function bootstrap() {
   .setTitle('API documents')
   .setDescription('The API description')
   .setVersion('1.0')
-  .addTag('TaskController')
   .build();
 
   const document = SwaggerModule.createDocument(app, options, {
     include: [
       TaskModule,
+      AuthModule
     ],
   });
   SwaggerModule.setup('docs', app, document);

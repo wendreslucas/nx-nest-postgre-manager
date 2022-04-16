@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { TaskModule } from './task/task.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { TaskModule } from './task/task.module';
       rootPath: join(__dirname, '../../..', 'views'),
     }),
     TaskModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

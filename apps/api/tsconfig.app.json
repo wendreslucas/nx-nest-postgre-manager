@@ -10,7 +10,7 @@
       "es6"
     ],
     "moduleResolution": "node",
-    "target": "es5"
+    "target": "es6"
   },
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
   "include": ["**/*.ts"]
