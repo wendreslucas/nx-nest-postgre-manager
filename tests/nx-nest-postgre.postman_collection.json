@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "a0a2f87d-96f2-4c11-a52c-cfaf94ca64f2",
+		"name": "nx-nest-postgre",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3333/api/task/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"task",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\bget tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3333/api/task/list",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"task",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update the status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3333/api/task/3?status=inProgress",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"task",
+								"3"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "inProgress"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add a task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "application/x-www-form-urlencoded",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "taskType",
+									"value": "regularMail",
+									"type": "text"
+								},
+								{
+									"key": "regularMail",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3333/api/task/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"task",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete the task by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3333/api/task/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"task",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

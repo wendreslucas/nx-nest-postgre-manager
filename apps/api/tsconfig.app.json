@@ -5,7 +5,12 @@
     "module": "commonjs",
     "types": ["node"],
     "emitDecoratorMetadata": true,
-    "target": "es2015"
+    "lib": [
+      "es5",
+      "es6"
+    ],
+    "moduleResolution": "node",
+    "target": "es5"
   },
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
   "include": ["**/*.ts"]
