@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "nx-nest-postgre-manager": "apps/nx-nest-postgre-manager",
+    "nx-nest-postgre-manager-e2e": "apps/nx-nest-postgre-manager-e2e"
+  }
+}

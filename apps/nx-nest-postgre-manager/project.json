@@ -1,0 +1,97 @@
+{
+  "projectType": "application",
+  "root": "apps/nx-nest-postgre-manager",
+  "sourceRoot": "apps/nx-nest-postgre-manager/src",
+  "prefix": "nx-nest-postgre-manager",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/nx-nest-postgre-manager",
+        "index": "apps/nx-nest-postgre-manager/src/index.html",
+        "main": "apps/nx-nest-postgre-manager/src/main.ts",
+        "polyfills": "apps/nx-nest-postgre-manager/src/polyfills.ts",
+        "tsConfig": "apps/nx-nest-postgre-manager/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/nx-nest-postgre-manager/src/favicon.ico",
+          "apps/nx-nest-postgre-manager/src/assets"
+        ],
+        "styles": ["apps/nx-nest-postgre-manager/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/nx-nest-postgre-manager/src/environments/environment.ts",
+              "with": "apps/nx-nest-postgre-manager/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "nx-nest-postgre-manager:build:production"
+        },
+        "development": {
+          "browserTarget": "nx-nest-postgre-manager:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/nx-nest-postgre-manager/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "nx-nest-postgre-manager:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/nx-nest-postgre-manager/src/**/*.ts",
+          "apps/nx-nest-postgre-manager/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/nx-nest-postgre-manager"],
+      "options": {
+        "jestConfig": "apps/nx-nest-postgre-manager/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
