@@ -1,9 +1,11 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
-import { ApiBody, ApiParam, ApiQuery } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiParam, ApiQuery } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 import { Status } from '../../database/entity/task/task.entity';
 import { TaskDto } from '../dto/task.dto';
 import { TaskService } from '../task/task.service';
+
+@ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('/api/task')
 export class TaskController {
@@ -26,7 +28,7 @@ export class TaskController {
         this.taskService.RemoveTaskById(id);
     }
 
-    @ApiQuery({ name: 'status' })
+    @ApiQuery({ name: 'status', enum: Status })
     @ApiParam({ name: 'id'})
     @Put(':id')
     async UpdateStatus(@Param('id') id, @Query() query) {

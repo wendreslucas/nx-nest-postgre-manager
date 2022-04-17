@@ -12,6 +12,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { TaskModule } from './app/task/task.module';
 import { AuthModule } from './app/auth/auth.module';
+import { AccountModule } from './app/account/account.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -23,15 +24,17 @@ async function bootstrap() {
   app.engine('html', require('ejs').renderFile);
 
   const options = new DocumentBuilder()
-  .setTitle('API documents')
+  .setTitle('Account management API documents')
   .setDescription('The API description')
   .setVersion('1.0')
+  .addBearerAuth()
   .build();
 
   const document = SwaggerModule.createDocument(app, options, {
     include: [
       TaskModule,
-      AuthModule
+      AuthModule,
+      AccountModule
     ],
   });
   SwaggerModule.setup('docs', app, document);
