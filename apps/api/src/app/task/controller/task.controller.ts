@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiParam, ApiQuery } from '@nestjs/swagger';
+import { Status } from '@nx-nest-postgre-manager/api-interfaces';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
-import { Status } from '../../database/entity/task/task.entity';
 import { TaskDto } from '../dto/task.dto';
 import { TaskService } from '../task/task.service';
 

@@ -1,9 +1,9 @@
+import { IAccount, JobType } from '@nx-nest-postgre-manager/api-interfaces';
 import { Column, Entity, ManyToMany, PrimaryColumn } from 'typeorm';
 import { RegisteredTask } from '../registeredTask/registeredTask.entity';
-import { JobType } from '../../../account/dto/account.dto';
 
 @Entity()
-export class Account {
+export class Account implements IAccount {
   @PrimaryColumn({ type: 'varchar' })
   email: string;
 

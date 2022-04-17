@@ -1,7 +1,7 @@
+import { TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import { IsEnum } from 'class-validator';
 import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from 'typeorm';
 import { Account } from '../account/accont.entity';
-import { TaskType } from '../task/task.entity';
 
 @Entity()
 export class RegisteredTask {

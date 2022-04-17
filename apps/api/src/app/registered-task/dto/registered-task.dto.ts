@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IRegisteredTask, TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import { IsEmail, IsEnum, IsNotEmpty } from 'class-validator';
-import { TaskType } from '../../database/entity/task/task.entity';
 
-export class RegisteredTaskDto {
+export class RegisteredTaskDto implements IRegisteredTask{
   @IsNotEmpty()
   @IsEmail()
   @ApiProperty()

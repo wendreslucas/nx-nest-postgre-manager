@@ -1,3 +1,4 @@
+import { ITask, Status, TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import {
     Column,
     CreateDateColumn,
@@ -6,20 +7,8 @@ import {
     UpdateDateColumn,
   } from 'typeorm';
 
-  export enum Status {
-    IN_PROGRESS = 'inProgress',
-    COMPLETED = 'completed',
-    INITIAL = 'initial',
-    START = 'start',
-  }
-
-  export enum TaskType {
-    REGULAR_MAIL = 'regularMail',
-    NONE = 'none',
-  }
-
   @Entity()
-  export class Task {
+  export class Task implements ITask {
     @PrimaryGeneratedColumn()
     id: number;
 

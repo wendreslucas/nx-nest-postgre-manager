@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiQuery } from '@nestjs/swagger';
+import { TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 import { Account } from '../../database/entity/account/accont.entity';
-import { TaskType } from '../../database/entity/task/task.entity';
 import { RegisteredTaskDto } from '../../registered-task/dto/registered-task.dto';
 import { AccountDto } from '../dto/account.dto';
 import { AccountService } from '../service/account.service';

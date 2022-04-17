@@ -1,17 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IAccount, JobType } from '@nx-nest-postgre-manager/api-interfaces';
 import { IsEmail, IsEnum, IsNotEmpty } from 'class-validator';
 
-export enum JobType {
-  softwareEngineer = 'software engineer',
-  eningeeringManager = 'eningeering manager',
-  productManager = 'product manager',
-  marketer = 'marketer',
-  sales = 'sales',
-  designer = 'designer',
-  student = 'student',
-}
-
-export class AccountDto {
+export class AccountDto implements IAccount {
   @IsNotEmpty()
   @ApiProperty()
   name: string;

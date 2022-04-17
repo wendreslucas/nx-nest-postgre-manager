@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import { Repository } from 'typeorm';
 import { RegisteredTask } from '../../database/entity/registeredTask/registeredTask.entity';
-import { TaskType } from '../../database/entity/task/task.entity';
 
 @Injectable()
 export class RegisteredTaskService {

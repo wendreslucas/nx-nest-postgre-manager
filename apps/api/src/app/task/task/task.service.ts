@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Status } from '@nx-nest-postgre-manager/api-interfaces';
 import { Repository } from 'typeorm';
-import { Status, Task } from '../../database/entity/task/task.entity';
+import { Task } from '../../database/entity/task/task.entity';
 import { TaskDto } from '../dto/task.dto';
 
 @Injectable()

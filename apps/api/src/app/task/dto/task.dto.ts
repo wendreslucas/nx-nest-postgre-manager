@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ITask, Status, TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import { IsEnum, IsNotEmpty } from 'class-validator';
-import { Status, TaskType } from '../../database/entity/task/task.entity';
 
-export class TaskDto {
+export class TaskDto implements ITask {
   @ApiProperty({
     enum: Object.values(Status)
   })

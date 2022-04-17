@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import { Repository } from 'typeorm';
 import { Account } from '../../database/entity/account/accont.entity';
 import { RegisteredTask } from '../../database/entity/registeredTask/registeredTask.entity';
-import { TaskType } from '../../database/entity/task/task.entity';
 import { RegisteredTaskDto } from '../../registered-task/dto/registered-task.dto';
 import { RegisteredTaskService } from '../../registered-task/service/registered-task.service';
 import { AccountDto } from '../dto/account.dto';

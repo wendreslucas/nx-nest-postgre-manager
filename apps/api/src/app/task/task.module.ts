@@ -5,8 +5,6 @@ import { TaskController } from './controller/task.controller';
 import { TaskService } from './task/task.service';
 import { getConnectionOptions } from 'typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { Account } from '../database/entity/account/accont.entity';
-import { RegisteredTask } from '../database/entity/registeredTask/registeredTask.entity';
 
 @Module({
     imports: [
