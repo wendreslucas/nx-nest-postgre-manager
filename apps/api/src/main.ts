@@ -3,7 +3,7 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
@@ -22,6 +22,8 @@ async function bootstrap() {
   app.set('view engine', 'html');
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   app.engine('html', require('ejs').renderFile);
+
+  app.useGlobalPipes(new ValidationPipe());
 
   const options = new DocumentBuilder()
   .setTitle('Account management API documents')

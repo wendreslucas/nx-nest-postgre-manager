@@ -18,4 +18,6 @@ export interface ITask {
 export interface IRegisteredTask {
   email: string;
   registerTaskType: TaskType;
+  taskType: TaskType;
+  accounts: IAccount[];
 }

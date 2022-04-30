@@ -1,10 +1,10 @@
-import { TaskType } from '@nx-nest-postgre-manager/api-interfaces';
+import { IRegisteredTask, TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import { IsEnum } from 'class-validator';
 import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from 'typeorm';
 import { Account } from '../account/accont.entity';
 
 @Entity()
-export class RegisteredTask {
+export class RegisteredTask implements Omit<IRegisteredTask, 'email' | 'registerTaskType'> {
   @PrimaryColumn({ type: 'varchar' })
   @IsEnum(TaskType)
   taskType: TaskType;
