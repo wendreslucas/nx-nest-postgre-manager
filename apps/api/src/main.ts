@@ -14,9 +14,18 @@ import { TaskModule } from './app/task/task.module';
 import { AuthModule } from './app/auth/auth.module';
 import { AccountModule } from './app/account/account.module';
 
+import { nestCsrf, CsrfFilter } from 'ncsrf';
+import * as cookieParser from 'cookie-parser'
+
+
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule);
+  app.use(cookieParser());
+  app.use(nestCsrf());
+  app.useGlobalFilters(new CsrfFilter);
+
+
   //const globalPrefix = 'api';
   //app.setGlobalPrefix(globalPrefix);
   app.set('view engine', 'html');

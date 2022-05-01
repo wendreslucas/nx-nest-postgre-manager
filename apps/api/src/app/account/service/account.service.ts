@@ -99,4 +99,11 @@ export class AccountService {
       relations: ['registeredTasks'],
     });
   }
+
+  async DeleteAccount(mail: string) {
+    await this.accountRepo.delete({
+       email: mail
+    });
+    return await this.GetAllAccounts();
+  }
 }

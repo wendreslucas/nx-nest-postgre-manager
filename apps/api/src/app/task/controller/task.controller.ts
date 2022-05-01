@@ -1,19 +1,30 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query, Req, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiParam, ApiQuery } from '@nestjs/swagger';
 import { Status } from '@nx-nest-postgre-manager/api-interfaces';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 import { TaskDto } from '../dto/task.dto';
 import { TaskService } from '../task/task.service';
+import { Csrf } from "ncsrf";
+import { CsrfService } from '../../service/csrf.service';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('/api/task')
 export class TaskController {
-    constructor(private taskService: TaskService) { }
+    constructor(
+      private taskService: TaskService,
+      private csrfService: CsrfService
+    ) { }
 
+    @Csrf()
     @Get('list')
     async GetTasks() {
         return await this.taskService.GetAllTasks();
+    }
+
+    @Get('csrf-token')
+    GetCsrfToken(@Req() req): any {
+      return this.csrfService.GetCsrfToken(req);
     }
 
     @ApiParam({ name: 'id'})
@@ -47,5 +58,6 @@ export class TaskController {
     @Post()
     async CreateNewTask(@Body() taskDto: TaskDto) {
         return this.taskService.AddTask(taskDto);
-      }
+    }
+
 }

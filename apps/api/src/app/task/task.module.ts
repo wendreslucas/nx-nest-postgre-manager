@@ -5,6 +5,7 @@ import { TaskController } from './controller/task.controller';
 import { TaskService } from './task/task.service';
 import { getConnectionOptions } from 'typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { CsrfService } from '../service/csrf.service';
 
 @Module({
     imports: [
@@ -29,9 +30,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
             },
             inject: [ConfigService],
           }),
+          
         TypeOrmModule.forFeature([Task])
     ],
     controllers: [TaskController],
-    providers: [TaskService],
+    providers: [TaskService, CsrfService],
 })
 export class TaskModule {}

@@ -21,3 +21,8 @@ export interface IRegisteredTask {
   taskType: TaskType;
   accounts: IAccount[];
 }
+
+export interface IUser {
+  username: string;
+  password: string;
+}

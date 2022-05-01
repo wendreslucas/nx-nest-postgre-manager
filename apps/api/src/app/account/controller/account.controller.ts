@@ -1,17 +1,23 @@
-import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, NotAcceptableException, Param, Post, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiQuery } from '@nestjs/swagger';
 import { TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 import { Account } from '../../database/entity/account/accont.entity';
 import { RegisteredTaskDto } from '../../registered-task/dto/registered-task.dto';
+import { CsrfService } from '../../service/csrf.service';
 import { AccountDto } from '../dto/account.dto';
 import { AccountService } from '../service/account.service';
+import { Csrf } from "ncsrf";
+import { Response } from 'express';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('/api/account')
 export class AccountController {
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private accountService: AccountService,
+    private csrfService: CsrfService
+  ) { }
 
   /*
   Get accounts by task type
@@ -29,13 +35,30 @@ export class AccountController {
     }
   }
 
+  private async getAccountsByMail(mail: string): Promise<Account[]> {
+    return await this.accountService.GetAccountByMail(mail);
+  }
+
+  /*
+  Get CSRF token
+  */
+  @Get('csrf-token')
+  GetCsrfToken(@Req() req): any {
+    return this.csrfService.GetCsrfToken(req);
+  }
+
   /*
   Create a new account
   */
+  @Csrf()
   @ApiBody({ type: AccountDto})
   @Post()
   async CreateAccount(@Body() accountDto: AccountDto) {
-    return await this.accountService.AddAccount(accountDto);
+    const res = await this.accountService.GetAccountByMail(accountDto.email);
+    if (res.length !== 0) {
+      throw new NotAcceptableException('This email has ready in used!');
+    }
+    return await this.accountService.AddAccount(accountDto)
   }
 
   /*
@@ -62,5 +85,14 @@ export class AccountController {
     return await this.accountService.RemoveRegisteredTaskFromAccount(
       registeredTaskDto,
     );
+  }
+
+  /*
+  Delete account by email
+  */
+  @ApiQuery({ name: 'email'})
+  @Delete()
+  DeleteAccount(@Query() query) {
+    return this.accountService.DeleteAccount(query.mail);
   }
 }

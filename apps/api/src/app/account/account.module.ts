@@ -7,6 +7,7 @@ import { Account } from '../database/entity/account/accont.entity';
 import { RegisteredTask } from '../database/entity/registeredTask/registeredTask.entity';
 import { Task } from '../database/entity/task/task.entity';
 import { RegisteredTaskService } from '../registered-task/service/registered-task.service';
+import { CsrfService } from '../service/csrf.service';
 import { AccountController } from './controller/account.controller';
 import { AccountService } from './service/account.service';
 
@@ -37,7 +38,7 @@ import { AccountService } from './service/account.service';
     TypeOrmModule.forFeature([Account]),
     TypeOrmModule.forFeature([RegisteredTask]),
   ],
-  providers: [AccountService, RegisteredTaskService],
+  providers: [AccountService, RegisteredTaskService, CsrfService],
   controllers: [AccountController]
 })
 export class AccountModule {}

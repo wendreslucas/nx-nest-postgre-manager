@@ -7,6 +7,7 @@ import { join } from 'path';
 import { TaskModule } from './task/task.module';
 import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
+import { CsrfService } from './service/csrf.service';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { AccountModule } from './account/account.module';
     AccountModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, CsrfService],
 })
 export class AppModule {}
