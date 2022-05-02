@@ -7,11 +7,12 @@ import { AccountModule } from './account/account.module';
 
 import { createCustomElement } from '@angular/elements';
 import { AccountComponent } from './account/account.component';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, AccountModule],
-  providers: [],
+  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
   bootstrap: [AppComponent],
   entryComponents: [AccountComponent]
 })
