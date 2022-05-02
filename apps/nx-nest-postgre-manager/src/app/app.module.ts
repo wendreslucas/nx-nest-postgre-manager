@@ -10,10 +10,10 @@ import { AccountComponent } from './account/account.component';
 import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AccountComponent],
   imports: [BrowserModule, AppRoutingModule, AccountModule],
   providers: [{provide: APP_BASE_HREF, useValue : '/' }],
-  bootstrap: [AppComponent],
+  bootstrap: [],
   entryComponents: [AccountComponent]
 })
 export class AppModule implements DoBootstrap{
