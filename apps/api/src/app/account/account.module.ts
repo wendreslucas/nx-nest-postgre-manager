@@ -32,7 +32,6 @@ import { AccountService } from './service/account.service';
           })
         }
 
-        console.log(settings)
         return settings;
       },
       inject: [ConfigService],
