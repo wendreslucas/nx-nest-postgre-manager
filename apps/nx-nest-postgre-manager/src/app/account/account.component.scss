@@ -7,7 +7,9 @@
         margin-right: 5px;
         margin-bottom: 3px;
         font-size: 14px;
-        padding: 5px;
+        font-family: 'Montserrat', sans-serif;
+        line-height: 14px;
+        padding: 10px;
         border: none;
         box-shadow: -2px 2px 3px #dcdcdc;
     }
@@ -43,8 +45,9 @@
 
 .title {
     font-size: 20px;
-    font-weight: 600;
-    font-family: 'Source Sans Pro,Helvetica Neue,sans-serif';
+    font-weight: 800;
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
     padding-bottom: 1px;
     margin-left: 75px;
     z-index: 1;
@@ -52,8 +55,9 @@
 }
 .subtitle {
     font-size: 14px;
-    font-weight: 400;
-    font-family: 'Source Sans Pro,Helvetica Neue,sans-serif';
+    font-weight: 500;
+    color: #7b7b7b;
+    font-family: 'Montserrat', sans-serif;
     padding-bottom: 1px;
     margin-left: 75px;
     z-index: 1;
@@ -69,7 +73,7 @@
     position: absolute;
     z-index: 0;
     opacity: 0.1;
-    left: 2px;
+    left: 40px;
     width: 55px;
     height: 55px;
     transform: rotate(355deg);
