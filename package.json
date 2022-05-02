@@ -5,8 +5,10 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "heroku-postbuild": "ng build api && nx build nx-nest-postgre-manager",
+    "heroku-postbuild": "ng build api && nx build nx-nest-postgre-manager && npm run build-angular-element && npm run package-angular-element",
     "start": "node dist/apps/api/main",
+    "build-angular-element": "cd apps/nx-nest-postgre-manager && ng build --prod --output-hashing=none",
+    "package-angular-element": "cd views && cat {runtime,polyfills,main}.js > dl-account.js",
     "build": "nx build",
     "test": "nx test"
   },
@@ -16,6 +18,7 @@
     "@angular/common": "~13.3.0",
     "@angular/compiler": "~13.3.0",
     "@angular/core": "~13.3.0",
+    "@angular/elements": "^13.3.5",
     "@angular/forms": "~13.3.0",
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
