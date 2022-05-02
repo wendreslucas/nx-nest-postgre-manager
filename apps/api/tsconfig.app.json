@@ -10,8 +10,9 @@
       "es6"
     ],
     "moduleResolution": "node",
-    "target": "es6"
+    "target": "es6",
+    "jsx": "react"
   },
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "src/app/mail/templates/Standard.tsx"]
 }

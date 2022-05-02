@@ -16,6 +16,7 @@ import { AccountModule } from './app/account/account.module';
 
 import { nestCsrf, CsrfFilter } from 'ncsrf';
 import * as cookieParser from 'cookie-parser'
+import { MailModule } from './app/mail/mail.module';
 
 
 async function bootstrap() {
@@ -45,7 +46,8 @@ async function bootstrap() {
     include: [
       TaskModule,
       AuthModule,
-      AccountModule
+      AccountModule,
+      MailModule
     ],
   });
   SwaggerModule.setup('docs', app, document);

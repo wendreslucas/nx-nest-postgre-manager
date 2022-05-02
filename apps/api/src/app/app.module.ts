@@ -8,6 +8,7 @@ import { TaskModule } from './task/task.module';
 import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
 import { CsrfService } from './service/csrf.service';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { CsrfService } from './service/csrf.service';
     TaskModule,
     AuthModule,
     AccountModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService, CsrfService],
