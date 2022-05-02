@@ -10,7 +10,7 @@ import { AccountComponent } from './account/account.component';
 import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
-  declarations: [AccountComponent],
+  declarations: [],
   imports: [BrowserModule, AppRoutingModule, AccountModule],
   providers: [{provide: APP_BASE_HREF, useValue : '/' }],
   bootstrap: [],
