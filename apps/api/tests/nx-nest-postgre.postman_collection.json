@@ -415,13 +415,36 @@
 					"name": "Get accounts",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "csrf-token",
+								"value": "{{csrf-token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": ""
+							"raw": "http://127.0.0.1:3333/api/account",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"account"
+							]
 						}
 					},
 					"response": []
@@ -534,14 +557,50 @@
 				{
 					"name": "Delete accounts",
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "csrf-token",
+								"value": "{{csrf-token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3333/api/account?mail=of_alpha@hotmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"account"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer {{access_token}}",
+									"disabled": true
+								},
+								{
+									"key": "mail",
+									"value": "of_alpha@hotmail.com"
+								},
+								{
+									"key": "csrf-token",
+									"value": "{{csrf-token}}",
+									"disabled": true
+								}
+							]
 						}
 					},
 					"response": []
@@ -550,13 +609,39 @@
 					"name": "Get account by email",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "csrf-token",
+								"value": "{{csrf-token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3333/api/account?email=of_alpha@hotmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"account"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "of_alpha@hotmail.com"
+								}
+							]
 						}
 					},
 					"response": []
@@ -566,6 +651,229 @@
 		{
 			"name": "registed-task",
 			"item": []
+		},
+		{
+			"name": "mail",
+			"item": [
+				{
+					"name": "get crsrf token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "289648f2-de98-4b19-a295-338a231b6c71",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.globals.set(\"csrf-token\", jsonData.token);",
+									"console.log(pm.globals.get(\"csrf-token\"))",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3333/api/mail/csrf-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"mail",
+								"csrf-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "preview mail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "csrf-token",
+								"value": "{{csrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "subject",
+									"value": "Daily Learning Newspaper",
+									"type": "text"
+								},
+								{
+									"key": "recipient",
+									"value": "of_alpha@hotmail.com;ofalpha@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"value": "https://raw.githubusercontent.com/JenHsuan/ALayman/master/views/images/alaymanicon.png",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Daily Learning Newpaper",
+									"type": "text"
+								},
+								{
+									"key": "btnText",
+									"value": "Daily-Learning website",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "https://daily-learning.herokuapp.com/",
+									"type": "text"
+								},
+								{
+									"key": "footer",
+									"value": "{\"blog\":\"1\",\"blog2\":\"2\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3333/api/mail/preview",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"mail",
+								"preview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send mail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "csrf-token",
+								"value": "{{csrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "subject",
+									"value": "Welcom to Join Daily Learning Newpaper!",
+									"type": "text"
+								},
+								{
+									"key": "recipient",
+									"value": "of_alpha@hotmail.com;ofalpha@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "There are many information around us today. To improve ourselves, we just need to move a further move every day. Daily learning provides articles, challenges, or videos to people who are also self-learner for programming.",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"value": "https://raw.githubusercontent.com/JenHsuan/ALayman/master/views/images/alaymanicon.png",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Daily Learning Newpaper",
+									"type": "text"
+								},
+								{
+									"key": "btnText",
+									"value": "Daily Learning website",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "https://daily-learning.herokuapp.com/",
+									"type": "text"
+								},
+								{
+									"key": "footer",
+									"value": "{\"blog\": \"https://medium.com/a-layman\", \"facebook\": \"https://www.facebook.com/imalayman\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3333/api/mail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"mail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
