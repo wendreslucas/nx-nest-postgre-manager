@@ -100,10 +100,10 @@ export class AccountService {
     });
   }
 
-  async DeleteAccount(mail: string) {
+  async DeleteAccount(mail: string): Promise<Account[]> {
     await this.accountRepo.delete({
        email: mail
     });
-    return await this.GetAllAccounts();
+    return await this.GetAccountByMail(mail);
   }
 }

@@ -77,6 +77,8 @@ export class AccountComponent implements OnInit{
             this.isFailed = true;
           }
         );
+    } else {
+      console.error('Please set the username and password in env variables');
     }
   }
 

@@ -27,6 +27,20 @@ export class MailService {
         }
     }
 
+    welcomeLetterData: MailDto = {
+        recipient: this.configService.get<string>('MOCKED_RECIPIENTS'),
+        subject: 'Welcom to Join Daily Learning Newpaper!',
+        title: 'Daily Learning Newpaper',
+        text: `There are many information around us today. To improve ourselves, we just need to move a further move every day. Daily learning provides articles, challenges, or videos to people who are also self-learner for programming.`,
+        logo: 'https://raw.githubusercontent.com/JenHsuan/ALayman/master/views/images/alaymanicon.png',
+        btnText: 'Daily-Learning website',
+        link: 'https://daily-learning.herokuapp.com/',
+        footer: {
+            blog: 'https://medium.com/a-layman',
+            facebook: 'https://www.facebook.com/imalayman'
+        }
+    }
+
     get template() {
         return render(Standard(this.mockedDta), { validationLevel: 'soft' }).html;
     }

@@ -9,6 +9,8 @@ import { AccountDto } from '../dto/account.dto';
 import { AccountService } from '../service/account.service';
 import { Csrf } from "ncsrf";
 import { Response } from 'express';
+import { MailService } from '../../mail/mail.service';
+import { MailDto } from '../../mail/dto/mail.dto';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
@@ -16,14 +18,16 @@ import { Response } from 'express';
 export class AccountController {
   constructor(
     private accountService: AccountService,
-    private csrfService: CsrfService
+    private csrfService: CsrfService,
+    private mailService: MailService
   ) { }
 
   /*
   Get accounts by task type
   */
   @ApiQuery({ name: 'tasktype', enum: TaskType })
-  @ApiQuery({ name: 'email'})
+  @ApiQuery({ name: 'email' })
+  @Csrf()
   @Get()
   async GetAccountsByTaskType(@Query() query): Promise<Account[]> {
     if (query.tasktype) {
@@ -33,10 +37,6 @@ export class AccountController {
     } else {
       return await this.accountService.GetAllAccounts();
     }
-  }
-
-  private async getAccountsByMail(mail: string): Promise<Account[]> {
-    return await this.accountService.GetAccountByMail(mail);
   }
 
   /*
@@ -58,6 +58,14 @@ export class AccountController {
     if (res.length !== 0) {
       throw new NotAcceptableException('This email has ready in used!');
     }
+    this.mailService.sendCustomizedMail(
+      Object.assign(
+        new MailDto(),
+        this.mailService.welcomeLetterData,
+        {
+          recipient: accountDto.email
+        })
+    );
     return await this.accountService.AddAccount(accountDto)
   }
 
@@ -90,9 +98,10 @@ export class AccountController {
   /*
   Delete account by email
   */
-  @ApiQuery({ name: 'email'})
+  @ApiQuery({ name: 'email' })
+  @Csrf()
   @Delete()
-  DeleteAccount(@Query() query) {
+  DeleteAccount(@Query() query): Promise<Account[]> {
     return this.accountService.DeleteAccount(query.mail);
   }
 }

@@ -6,6 +6,8 @@ import { getConnectionOptions } from 'typeorm';
 import { Account } from '../database/entity/account/accont.entity';
 import { RegisteredTask } from '../database/entity/registeredTask/registeredTask.entity';
 import { Task } from '../database/entity/task/task.entity';
+import { MailModule } from '../mail/mail.module';
+import { MailService } from '../mail/mail.service';
 import { RegisteredTaskService } from '../registered-task/service/registered-task.service';
 import { CsrfService } from '../service/csrf.service';
 import { AccountController } from './controller/account.controller';
@@ -37,8 +39,12 @@ import { AccountService } from './service/account.service';
     }),
     TypeOrmModule.forFeature([Account]),
     TypeOrmModule.forFeature([RegisteredTask]),
+    MailModule,
+    ConfigModule.forRoot({
+        envFilePath: ['.env.development.local'],
+    }),
   ],
-  providers: [AccountService, RegisteredTaskService, CsrfService],
+  providers: [AccountService, RegisteredTaskService, CsrfService, MailService],
   controllers: [AccountController]
 })
 export class AccountModule {}
