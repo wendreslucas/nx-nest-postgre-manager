@@ -10,9 +10,6 @@
                 <input id="name" type="text" formControlName="name" [attr.disabled]="shouldWait ? true : null" placeholder="Name..." title="{{ errorMessage('name') }}">
                 <input id="email" type="text" formControlName="email" [attr.disabled]="shouldWait ? true : null" placeholder="Email address..." title="{{ errorMessage('email') }}">
             </div>
-            <select formControlName="jobType" title="What's your profession?" [attr.disabled]="shouldWait ? true : null">
-                <option *ngFor="let job of jobTypes">{{job}}</option>
-            </select>
         </div>
 
         <button type="submit" [disabled]="!accountForm.valid || hasSendRequest" title="Register">
