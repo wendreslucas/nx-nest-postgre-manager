@@ -33,6 +33,7 @@
         border: .5px solid #ffffff;
         border-radius: 50px;
         align-self: center;
+        justify-content: center;
     }
     button:hover:enabled {
         background-color: gray;
@@ -68,11 +69,11 @@
     position: absolute;
     z-index: 0;
     opacity: 0.1;
-    padding: 10px;
     left: 2px;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     transform: rotate(355deg);
+    padding: 5px 10px;
 }
 
 @media screen and (max-width: 600px) {
@@ -83,6 +84,9 @@
     }
     .field {
         width: calc(100% - 50px);
+    }
+    .background-img {
+        padding: 0 0 0 5px;
     }
 }
 
