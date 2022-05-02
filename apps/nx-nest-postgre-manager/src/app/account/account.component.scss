@@ -8,6 +8,7 @@
         margin-bottom: 3px;
         font-size: 14px;
         font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
         line-height: 14px;
         padding: 10px;
         border: none;
@@ -72,12 +73,12 @@
 .background-img {
     position: absolute;
     z-index: 0;
-    opacity: 0.1;
-    left: 40px;
+    opacity: 0.2;
+    left: 15px;
     width: 55px;
     height: 55px;
     transform: rotate(355deg);
-    padding: 10px;
+    padding: 13px 0;
 }
 
 @media screen and (max-width: 600px) {
