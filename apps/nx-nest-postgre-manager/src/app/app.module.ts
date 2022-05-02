@@ -1,4 +1,4 @@
-import { Injector, NgModule } from '@angular/core';
+import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -15,10 +15,11 @@ import { AccountComponent } from './account/account.component';
   bootstrap: [AppComponent],
   entryComponents: [AccountComponent]
 })
-export class AppModule {
+export class AppModule implements DoBootstrap{
   constructor(private injector: Injector) {
 
   }
+
   ngDoBootstrap() {
     const accountElement = createCustomElement(AccountComponent, { injector: this.injector });
     customElements.define('dl-account', accountElement);
