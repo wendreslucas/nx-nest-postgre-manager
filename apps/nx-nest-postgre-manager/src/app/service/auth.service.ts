@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   FetchToken(username: string, password: string): Observable<string> {
-    return this.http.post<any>(`${BASE_URL}/login`, { username, password }).pipe(
+    return this.http.post<any>(`${BASE_URL}/login/`, { username, password }).pipe(
       map(res => {
         if (!res.access_token) {
           return of('')
