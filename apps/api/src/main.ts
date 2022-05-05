@@ -27,7 +27,7 @@ async function bootstrap() {
   app.useGlobalFilters(new CsrfFilter);
 
   //enable CORS
-  //app.enableCors();
+  app.enableCors();
 
 
   //const globalPrefix = 'api';
