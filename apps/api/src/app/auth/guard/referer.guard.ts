@@ -1,10 +1,7 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ExecutionContext } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RefererGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,

@@ -17,7 +17,7 @@ import { AccountModule } from './app/account/account.module';
 import { nestCsrf, CsrfFilter } from 'ncsrf';
 import * as cookieParser from 'cookie-parser'
 import { MailModule } from './app/mail/mail.module';
-import { RefererGuard } from './app/auth/guard/referer-guard';
+import { RefererGuard } from './app/auth/guard/referer.guard';
 
 
 async function bootstrap() {

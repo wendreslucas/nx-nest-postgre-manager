@@ -8,10 +8,9 @@ import { CsrfService } from '../../service/csrf.service';
 import { AccountDto } from '../dto/account.dto';
 import { AccountService } from '../service/account.service';
 import { Csrf } from "ncsrf";
-import { Response } from 'express';
 import { MailService } from '../../mail/mail.service';
 import { MailDto } from '../../mail/dto/mail.dto';
-import { RefererGuard } from '../../auth/guard/referer-guard';
+import { RefererGuard } from '../../auth/guard/referer.guard';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
