@@ -13,6 +13,7 @@ export class RefererGuard implements CanActivate {
       'https://nx-nest-postgre-manager.herokuapp.com/'
     ]
     console.log(request.headers)
+    console.log(request.headers['referer'])
     return allows.find(allow => allow === request.headers['referer']) !== undefined;
   }
 }
