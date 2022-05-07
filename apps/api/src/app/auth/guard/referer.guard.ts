@@ -9,8 +9,10 @@ export class RefererGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
 
     const allows = [
+      'https://daily-learning.herokuapp.com/',
+      'https://nx-nest-postgre-manager.herokuapp.com/',
       'https://daily-learning.herokuapp.com',
-      'https://nx-nest-postgre-manager.herokuapp.com/'
+      'https://nx-nest-postgre-manager.herokuapp.com'
     ]
     console.log(request.headers)
     console.log(request.headers['referer'])
