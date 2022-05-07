@@ -7,7 +7,12 @@ export class RefererGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
+
+    const allows = [
+      'https://daily-learning.herokuapp.com',
+      'https://nx-nest-postgre-manager.herokuapp.com/'
+    ]
     console.log(request.headers)
-    return false;
+    return allows.find(allow => allow === request.headers['referer']) !== undefined;
   }
 }
