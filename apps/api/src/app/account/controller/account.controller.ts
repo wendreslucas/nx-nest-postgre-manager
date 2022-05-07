@@ -11,6 +11,7 @@ import { Csrf } from "ncsrf";
 import { Response } from 'express';
 import { MailService } from '../../mail/mail.service';
 import { MailDto } from '../../mail/dto/mail.dto';
+import { RefererGuard } from '../../auth/guard/referer-guard';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
@@ -50,9 +51,10 @@ export class AccountController {
   /*
   Create a new account
   */
-  @Csrf()
+  // @Csrf()
   @ApiBody({ type: AccountDto})
   @Post()
+  @UseGuards(RefererGuard)
   async CreateAccount(@Body() accountDto: AccountDto) {
     const res = await this.accountService.GetAccountByMail(accountDto.email);
     if (res.length !== 0) {
