@@ -38,7 +38,7 @@ async function bootstrap() {
   app.engine('html', require('ejs').renderFile);
 
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalGuards(new RefererGuard());
+  //app.useGlobalGuards(new RefererGuard());
 
   const options = new DocumentBuilder()
   .setTitle('Account management API documents')
