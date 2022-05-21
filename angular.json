@@ -5,6 +5,7 @@
     "admin-e2e": "apps/admin-e2e",
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
+    "common": "libs/common",
     "nx-nest-postgre-manager": "apps/nx-nest-postgre-manager",
     "nx-nest-postgre-manager-e2e": "apps/nx-nest-postgre-manager-e2e"
   }

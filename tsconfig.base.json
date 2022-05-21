@@ -17,7 +17,8 @@
     "paths": {
       "@nx-nest-postgre-manager/api-interfaces": [
         "libs/api-interfaces/src/index.ts"
-      ]
+      ],
+      "@nx-nest-postgre-manager/common": ["libs/common/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

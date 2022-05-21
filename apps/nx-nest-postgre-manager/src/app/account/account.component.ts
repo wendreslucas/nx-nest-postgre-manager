@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JobType } from '@nx-nest-postgre-manager/api-interfaces';
 
 import { faEnvelope, faCheck, faExclamationTriangle, faSpinner, faX } from '@fortawesome/free-solid-svg-icons';
-import { environment } from '../../environments/environment';
 import { AccountService } from './service/account.service';
+import { Env, ENV_TOKEN } from '@nx-nest-postgre-manager/common';
 
 @Component({
   selector: 'nx-nest-postgre-manager-account',
@@ -24,7 +24,10 @@ export class AccountComponent implements OnInit{
   isSuccessful = false;
   isFailed = false;
 
-  constructor(private accountService: AccountService) {
+  constructor(
+    private accountService: AccountService,
+    @Inject(ENV_TOKEN) private env: Env
+  ) {
     this.accountForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -61,8 +64,8 @@ export class AccountComponent implements OnInit{
 
   onSubmit() {
     this.hasSendRequest = true;
-    if (environment.username && environment.password) {
-      this.accountService.CreateAccount(environment.username, environment.password, this.accountForm.value)
+    if (this.env.username && this.env.password) {
+      this.accountService.CreateAccount(this.env.username, this.env.password, this.accountForm.value)
         .subscribe(
           (res: any) => {
             if (res && res.error) {

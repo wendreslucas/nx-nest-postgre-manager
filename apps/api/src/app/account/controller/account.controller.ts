@@ -27,6 +27,7 @@ export class AccountController {
   */
   @ApiQuery({ name: 'tasktype', enum: TaskType })
   @ApiQuery({ name: 'email' })
+  @UseGuards(RefererGuard)
   @Csrf()
   @Get()
   async GetAccountsByTaskType(@Query() query): Promise<Account[]> {

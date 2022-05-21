@@ -1,21 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { IAccount } from '@nx-nest-postgre-manager/api-interfaces';
-import { environment } from '../../../environments/environment';
 import { catchError, concatMap, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
 import { Account } from '../model/account.model';
 import { AuthService } from '../../service/auth.service';
-
-const BASE_URL = `${environment.baseApiPrefix}/account`;
+import { Env, ENV_TOKEN } from '@nx-nest-postgre-manager/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
+  private BASE_URL: string;
   constructor(
     private http: HttpClient,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    @Inject(ENV_TOKEN) private env: Env
+  ) {
+    this.BASE_URL = `${this.env.baseApiPrefix}/account`;
+  }
 
   GetCsrfToken(accessToken: string): Observable<string> {
     const headers = new HttpHeaders({
@@ -24,7 +26,7 @@ export class AccountService {
     });
 
     const options = { headers: headers };
-    return this.http.get<any>(`${BASE_URL}/csrf-token`, options).pipe(
+    return this.http.get<any>(`${this.BASE_URL}/csrf-token`, options).pipe(
       map(res => res.token)
     );
   }
@@ -43,7 +45,7 @@ export class AccountService {
           'csrf-token': `${csrfToken}`
         });
 
-        return this.http.post<IAccount>(BASE_URL, account, { headers: headers }).pipe(
+        return this.http.post<IAccount>(this.BASE_URL, account, { headers: headers }).pipe(
             map(account => Object.assign(
               new Account(), {
                 name: account.name,
