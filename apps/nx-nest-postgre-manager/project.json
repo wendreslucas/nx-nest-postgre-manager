@@ -5,8 +5,7 @@
   "prefix": "nx-nest-postgre-manager",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "builder": "@angular-builders/custom-webpack:browser",
+      "executor": "@angular-builders/custom-webpack:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "views",
@@ -59,8 +58,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "builder": "@angular-builders/custom-webpack:dev-server",
+      "executor": "@angular-builders/custom-webpack:dev-server",
       "configurations": {
         "production": {
           "browserTarget": "nx-nest-postgre-manager:build:production"
