@@ -1,10 +1,12 @@
 {
   "version": 2,
   "projects": {
+    "account": "libs/account",
     "admin": "apps/admin",
     "admin-e2e": "apps/admin-e2e",
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
+    "auth": "libs/auth",
     "common": "libs/common",
     "nx-nest-postgre-manager": "apps/nx-nest-postgre-manager",
     "nx-nest-postgre-manager-e2e": "apps/nx-nest-postgre-manager-e2e"

@@ -3,8 +3,8 @@ import { Inject, Injectable } from '@angular/core';
 import { IAccount } from '@nx-nest-postgre-manager/api-interfaces';
 import { catchError, concatMap, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
 import { Account } from '../model/account.model';
-import { AuthService } from '../../service/auth.service';
 import { Env, ENV_TOKEN } from '@nx-nest-postgre-manager/common';
+import { AuthService } from '@nx-nest-postgre-manager/auth';
 
 @Injectable({
   providedIn: 'root'

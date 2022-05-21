@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JobType } from '@nx-nest-postgre-manager/api-interfaces';
 
 import { faEnvelope, faCheck, faExclamationTriangle, faSpinner, faX } from '@fortawesome/free-solid-svg-icons';
-import { AccountService } from './service/account.service';
 import { Env, ENV_TOKEN } from '@nx-nest-postgre-manager/common';
+import { AccountService } from '@nx-nest-postgre-manager/account';
 
 @Component({
   selector: 'nx-nest-postgre-manager-account',
