@@ -2,16 +2,23 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { environment } from '../environments/environment';
+import { ENV_TOKEN } from '@nx-nest-postgre-manager/common';
+import { AccountModule } from './account/account.module';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
+    AppRoutingModule,
+    AccountModule
   ],
-  providers: [],
+  providers: [{
+    provide: ENV_TOKEN,
+    useValue: environment
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

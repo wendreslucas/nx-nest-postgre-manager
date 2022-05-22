@@ -5,7 +5,7 @@
   "prefix": "nx-nest-postgre-manager",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-builders/custom-webpack:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/admin",
@@ -16,7 +16,10 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
         "styles": ["apps/admin/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/admin/extra-webpack.config.js"
+        }
       },
       "configurations": {
         "production": {
@@ -52,7 +55,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular-builders/custom-webpack:dev-server",
       "configurations": {
         "production": {
           "browserTarget": "admin:build:production"
@@ -61,7 +64,10 @@
           "browserTarget": "admin:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/admin/proxy.conf.json"
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",

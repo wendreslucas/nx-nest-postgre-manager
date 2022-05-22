@@ -31,7 +31,7 @@ export class AccountService {
     );
   }
 
-  CreateAccount(username: string, password: string, account: Account): Observable<Account | string> {
+  private addAuthHeader(username: string, password: string, func: (header: HttpHeaders) => Observable<any>): Observable<any> {
     let accessToken: string | null;
     return this.authService.FetchToken(username, password).pipe(
       tap(token => accessToken = token),
@@ -44,26 +44,40 @@ export class AccountService {
           'Authorization': `Bearer ${accessToken}`,
           'csrf-token': `${csrfToken}`
         });
-
-        return this.http.post<IAccount>(this.BASE_URL, account, { headers: headers }).pipe(
-            map(account => Object.assign(
-              new Account(), {
-                name: account.name,
-                email: account.email,
-                jobType: account.jobType
-              })
-            ),
-            catchError(err => {
-              console.log(err)
-              return of(err)
-            })
-        )
+        return func(headers);
       }),
       catchError(err => {
         console.log(err);
         return of(err);
       })
     )
+  }
 
+  CreateAccount(username: string, password: string, account: Account): Observable<Account | string> {
+    return this.addAuthHeader(username, password, (headers) => {
+      return this.http.post<IAccount>(this.BASE_URL, account, { headers: headers }).pipe(
+        map(account => Object.assign(
+          new Account(), {
+          name: account.name,
+          email: account.email,
+          jobType: account.jobType
+        })),
+        catchError(err => {
+          console.log(err)
+          return of(err)
+        })
+      );
+    })
+  }
+
+  GetAccounts(username: string, password: string): Observable<Account[]> {
+    return this.addAuthHeader(username, password, (headers) => {
+      return this.http.get<IAccount[]>(this.BASE_URL, { headers: headers }).pipe(
+        catchError(err => {
+          console.log(err)
+          return of(err)
+        })
+      );
+    })
   }
 }
