@@ -1,18 +1,38 @@
 .field {
     display: inline-block;
     width: 50%;
+    height: 60%;
     align-self: center;
-    input {
-        width: calc(50% - 25px);
-        margin-right: 5px;
-        margin-bottom: 3px;
+    .second-field-container {
+        display: flex;
+    }
+    nx-nest-postgre-manager-account-field-job-type {
+        display: flex;
+        margin-right: .3em;
+        margin-bottom: .2em;
         font-size: 14px;
         font-family: 'Montserrat', sans-serif;
         font-weight: 800;
         line-height: 14px;
-        padding: 10px;
+        padding: .5em;
+        align-items: center;
+        background: #fff;
         border: none;
         box-shadow: -2px 2px 3px #dcdcdc;
+        flex-basis: 0;
+        flex-grow: 1;
+    }
+    input {
+        margin-right: .3em;
+        margin-bottom: .2em;
+        font-size: 14px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        line-height: 14px;
+        padding: 1em;
+        border: none;
+        box-shadow: -2px 2px 3px #dcdcdc;
+        flex-grow: 1;
     }
     select {
         width: calc(100% - 25px);
@@ -30,8 +50,7 @@
     border: 1px solid #ffffff;
     border-radius: 3px;
     padding: 0 5px;
-    height: 80px;
-    overflow: hidden;
+    height: 150px;
     button {
         height: 40px;
         width: 40px;
@@ -85,15 +104,20 @@
 
 @media screen and (max-width: 600px) {
     .widget {
-        display: block;
-        height: unset;
-        padding: 5px 10px;
+        height: 200px;
+        .title {
+            margin-left: 10px;
+        }
+        .subtitle {
+            margin-left: 10px;
+        }
     }
     .field {
-        width: calc(100% - 50px);
-    }
-    .background-img {
-        padding: 0 0 0 5px;
+        display: flex;
+        flex-direction: column;
+        .second-field-container {
+            flex-direction: column;
+        }
     }
 }
 

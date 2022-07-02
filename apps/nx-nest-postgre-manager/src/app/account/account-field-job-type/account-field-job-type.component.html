@@ -1,0 +1,12 @@
+<ng-select [items]="jobTypes"
+           bindLabel="name"
+           bindValue="id"
+           [placeholder]="placeholder"
+           [(ngModel)]="selectedCar"
+           [searchable]="false"
+           groupBy="group"
+           (close)="onClose()">
+           <ng-template ng-optgroup-tmp let-item="item">
+               {{item.group || 'Unnamed group'}}
+           </ng-template>
+</ng-select>

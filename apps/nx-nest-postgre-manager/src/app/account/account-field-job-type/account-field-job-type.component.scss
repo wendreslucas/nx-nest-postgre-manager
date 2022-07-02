@@ -1,0 +1,29 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+::ng-deep .ng-select {
+    width: 100%;
+    .ng-select-container {
+        background: #fff;
+        padding: .5em;
+    }
+    .ng-dropdown-panel {
+        background: #fff;
+        border: 1px #cecece solid;
+        .ng-option {
+            font-size: .8em;
+            padding: 1em;
+            padding-left: 1.3em;
+            color: #000;
+            &:hover {
+                background: #99d8ea;
+                cursor: pointer;
+                font-weight: 900;
+            }
+        }
+        .ng-optgroup {
+            font-weight: 900;
+            padding: 1em;
+            padding-left: .3em;
+        }
+    }
+}
