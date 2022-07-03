@@ -5,7 +5,9 @@
             <div class="subtitle">Subscribe to stay up to date with the latest articles!</div>
         </div>
         <div class="field">
-            <nx-nest-postgre-manager-account-field-job-type></nx-nest-postgre-manager-account-field-job-type>
+            <nx-nest-postgre-manager-account-field-job-type
+                formControlName="jobType">
+            </nx-nest-postgre-manager-account-field-job-type>
             <div class="second-field-container">
                 <input id="name" type="text" formControlName="name" [attr.disabled]="shouldWait ? true : null" placeholder="Name..." title="{{ errorMessage('name') }}">
                 <input id="email" type="text" formControlName="email" [attr.disabled]="shouldWait ? true : null" placeholder="Email address..." title="{{ errorMessage('email') }}">

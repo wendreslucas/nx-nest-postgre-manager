@@ -31,7 +31,7 @@ export class AccountComponent implements OnInit{
     this.accountForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      jobType: new FormControl(JobType.softwareEngineer, Validators.required),
+      jobType: new FormControl('', Validators.required),
     });
   }
 
