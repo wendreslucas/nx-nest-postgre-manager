@@ -2,3 +2,10 @@ Dockerfile
 .dockerignore
 node_modules
 .git
+.env.development.local
+cheatsheet
+ormconfig.env
+readme.md
+.angular
+.vscode
+tests
