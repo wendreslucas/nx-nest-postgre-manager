@@ -10,6 +10,7 @@ import { MailModule } from '../mail/mail.module';
 import { MailService } from '../mail/mail.service';
 import { RegisteredTaskService } from '../registered-task/service/registered-task.service';
 import { CsrfService } from '../service/csrf.service';
+import { DeployedPlatform } from '../service/enum/DeployedPlatform';
 import { AccountController } from './controller/account.controller';
 import { AccountService } from './service/account.service';
 
@@ -21,15 +22,16 @@ import { AccountService } from './service/account.service';
         let settings = Object.assign(await getConnectionOptions(), {
           autoLoadEntities: true,
         })
-        if (configService.get<string>('isProd').toLocaleLowerCase() == 'true') {
-          settings = Object.assign(settings, {
-            ssl: true,
-            extra: {
+        if ((configService.get<string>('isProd').toLocaleLowerCase() == 'true') &&
+            (configService.get<string>('platform').toLocaleLowerCase() !== DeployedPlatform.fly)) {
+            settings = Object.assign(settings, {
+              ssl: true,
+              extra: {
                 ssl: {
                     rejectUnauthorized: false
                 }
-            }
-          })
+              }
+            })
         }
 
         return settings;

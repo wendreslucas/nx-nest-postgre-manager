@@ -6,6 +6,7 @@ import { TaskService } from './task/task.service';
 import { getConnectionOptions } from 'typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CsrfService } from '../service/csrf.service';
+import { DeployedPlatform } from '../service/enum/DeployedPlatform';
 
 @Module({
     imports: [
@@ -15,15 +16,16 @@ import { CsrfService } from '../service/csrf.service';
               let settings = Object.assign(await getConnectionOptions(), {
                 autoLoadEntities: true,
               })
-              if (configService.get<string>('isProd').toLocaleLowerCase() == 'true') {
-                settings = Object.assign(settings, {
-                  ssl: true,
-                  extra: {
+              if ((configService.get<string>('isProd').toLocaleLowerCase() == 'true') &&
+                  (configService.get<string>('platform').toLocaleLowerCase() !== DeployedPlatform.fly)) {
+                  settings = Object.assign(settings, {
+                    ssl: true,
+                    extra: {
                       ssl: {
                           rejectUnauthorized: false
                       }
-                  }
-                })
+                    }
+                  })
               }
 
               return settings;
