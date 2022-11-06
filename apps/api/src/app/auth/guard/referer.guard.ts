@@ -13,9 +13,9 @@ export class RefererGuard implements CanActivate {
     const allows = [];
     if (this.configService.get<string>('isProd').toLocaleLowerCase() == 'true') {
       allows.push('https://daily-learning.herokuapp.com/');
-      allows.push('https://nx-nest-postgre-manager.herokuapp.com/');
+      allows.push('https://nx-nest-postgre-manager.fly.dev/');
       allows.push('https://daily-learning.herokuapp.com');
-      allows.push('https://nx-nest-postgre-manager.herokuapp.com');
+      allows.push('https://nx-nest-postgre-manager.fly.dev');
 
       return allows.find(allow => allow === request.headers['referer']) !== undefined;
     }
