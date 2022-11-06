@@ -5,6 +5,6 @@ import { Response } from 'express';
 export class AppController {
   @Get()
   edit(@Res() res: Response) {
-      return res.render('index.html')
+      return res.render('account/index.html')
   }
 }

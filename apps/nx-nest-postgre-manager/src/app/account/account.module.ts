@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +12,6 @@ import { AccountFieldJobTypeComponent } from './account-field-job-type/account-f
   declarations: [AccountComponent, AccountFieldJobTypeComponent],
   imports: [
     CommonModule,
-    AccountRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
