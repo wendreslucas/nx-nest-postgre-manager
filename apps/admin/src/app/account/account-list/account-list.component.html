@@ -1,9 +1,12 @@
-<div *ngIf="accounts.length > 0">
-    <div *ngFor="let account of accounts">
-        <div class="account-row">
-            <div class="item">{{account.name}}</div>
-            <div class="item">{{account.email}}</div>
-            <div class="item">{{account.jobType}}</div>
-        </div>
+<div class="account-container">
+    <div class="account-row">
+        <div class="title item">Name</div>
+        <div class="title item">Mail</div>
+        <div class="title item">Type</div>
+    </div>
+    <div class="account-row" *ngFor="let account of accounts">
+        <div class="item">{{account.name}}</div>
+        <div class="item">{{account.email}}</div>
+        <div class="item">{{account.jobType}}</div>
     </div>
 </div>
