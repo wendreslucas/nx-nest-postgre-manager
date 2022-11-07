@@ -6,8 +6,8 @@ export class UserService {
     private users = [
         {
             userId: 1,
-            username: this.configService.get<string>('VAILD_USERNAME'),
-            password: this.configService.get<string>('VAILD_PASSWORD')
+            username: this.configService.get<string>('valid_username'),
+            password: this.configService.get<string>('valid_password')
         }
     ];
 
