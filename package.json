@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "heroku-postbuild": "ng build api && nx build nx-nest-postgre-manager && npm run build-angular-element",
+    "heroku-postbuild": "ng build api && nx build nx-nest-postgre-manager && nx build admin && npm run build-angular-element",
     "start": "node dist/apps/api/main",
     "dev:server": "nx run api:serve",
     "dev:widget": "nx run nx-nest-postgre-manager:serve",

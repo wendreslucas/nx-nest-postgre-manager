@@ -4,6 +4,7 @@ import { AccountListComponent } from './account-list/account-list.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AccountLoginComponent } from './account-login/account-login.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { AccountLoginComponent } from './account-login/account-login.component';
     CommonModule,
     AccountRoutingModule,
     HttpClientModule,
+    FontAwesomeModule,
     ReactiveFormsModule,
   ],
 })
