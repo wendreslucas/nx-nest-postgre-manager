@@ -53,6 +53,23 @@ export class AccountService {
     )
   }
 
+  private addAuthHeaderByToken(token: string, func: (header: HttpHeaders) => Observable<any>): Observable<any> {
+    return this.GetCsrfToken(token).pipe(
+      concatMap((csrfToken: string) => {
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'csrf-token': `${csrfToken}`
+        });
+        return func(headers);
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(err);
+      })
+    )
+  }
+
   CreateAccount(username: string, password: string, account: Account): Observable<Account | string> {
     return this.addAuthHeader(username, password, (headers) => {
       return this.http.post<IAccount>(this.BASE_URL, account, { headers: headers }).pipe(
@@ -72,6 +89,17 @@ export class AccountService {
 
   GetAccounts(username: string, password: string): Observable<Account[]> {
     return this.addAuthHeader(username, password, (headers) => {
+      return this.http.get<IAccount[]>(this.BASE_URL, { headers: headers }).pipe(
+        catchError(err => {
+          console.log(err)
+          return of(err)
+        })
+      );
+    })
+  }
+
+  GetAccountsByToken(token: string): Observable<Account[]> {
+    return this.addAuthHeaderByToken(token, (headers) => {
       return this.http.get<IAccount[]>(this.BASE_URL, { headers: headers }).pipe(
         catchError(err => {
           console.log(err)

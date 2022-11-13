@@ -7,7 +7,10 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, public authService: AuthService) {}
+  constructor(
+    private router: Router, 
+    public authService: AuthService
+  ) {}
   
   canActivate(
     route: ActivatedRouteSnapshot,

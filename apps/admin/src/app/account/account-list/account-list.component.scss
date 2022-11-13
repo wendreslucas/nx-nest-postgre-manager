@@ -1,25 +1,26 @@
 .account-container {
+  width: 800px;
+  margin: 0 auto;
     .account-row {
-        display: flex;
-        &:last-child {
-            border-bottom: 1px solid #000;
-        }
-        .item {
-            padding: .5em;
-            width: 20em;
-            border: 1px solid #000;
-            border-right: none;
-            border-bottom: none;
-            flex-grow: 1;
-            width: 0;
-            word-break: break-all;
-
-            &:last-child {
-                border-right: 1px solid #000;
-            }
-        }
-        .title {
-            font-weight: 600;
-        }
+    display: flex;
+    &:last-child {
+      border-bottom: 1px solid #000;
     }
+    .item {
+      padding: .5em;
+      width: 20em;
+      border: 1px solid #000;
+      border-right: none;
+      border-bottom: none;
+      flex-grow: 1;
+      width: 0;
+      word-break: break-all;
+      &:last-child {
+        border-right: 1px solid #000;
+      }
+    }
+    .title {
+      font-weight: 600;
+    }
+  }
 }

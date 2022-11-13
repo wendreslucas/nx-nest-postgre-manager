@@ -3,20 +3,24 @@
     <div class="login-container-panel">
       <div class="logo">
         <fa-icon [icon]="faUsers"></fa-icon>
-        Account Manager</div>
+        <span>Account Manager</span> 
+      </div>
       <div class="title">Log in</div>
       <div class="subtitle">Welcome back! Please enter your details.</div>
-      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="element field">User Name</div>
-        <input class="element field-input" type="text">
+        <input class="element field-input" formControlName="userName" type="text">
         <div class="element field">Password</div>
         <div class="element field password-container">
-          <input class="field-input" [type]="passwordInputType">
+          <input class="element field-input" formControlName="password" [type]="passwordInputType">
           <span (click)="switchPasswordType()">{{passwordTip}}</span> 
         </div>
-        <button class="element submit" type="submit" [disabled]="!loginForm.valid" title="Register">
+        <button class="element submit" type="submit" title="signin" [disabled]="!form.valid">
           Sign in
         </button>
+        <div class="element err-message" *ngFor="let item of errorMessage()">
+          {{item}}
+        </div>
       </form>    
     </div>
     <div class="footer">

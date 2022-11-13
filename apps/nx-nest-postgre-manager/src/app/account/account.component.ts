@@ -65,24 +65,24 @@ export class AccountComponent implements OnInit{
   onSubmit() {
     this.hasSendRequest = true;
     if (this.env.username && this.env.password) {
-      this.accountService.CreateAccount(this.env.username, this.env.password, this.accountForm.value)
-        .subscribe(
-          (res: any) => {
-            if (res && res.error) {
-              this.isFailed = true;
-              console.error(res)
-              return;
-            }
-            this.isSuccessful = true;
-          },
-          (err) => {
-            console.error(err);
+    this.accountService.CreateAccount(this.env.username, this.env.password, this.accountForm.value)
+      .subscribe(
+        (res: any) => {
+          if (res && res.error) {
             this.isFailed = true;
+            console.error(res)
+            return;
           }
-        );
-    } else {
-      console.error('Please set the username and password in env variables');
-    }
+          this.isSuccessful = true;
+        },
+        (err) => {
+          console.error(err);
+          this.isFailed = true;
+        }
+      );
+  } else {
+    console.error('Please set the username and password in env variables');
+  }
   }
 
 }
