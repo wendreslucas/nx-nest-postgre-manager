@@ -7,9 +7,14 @@ npm install --global @angular/cli@13.0.0
 npm install
 
 ## Developer cheatsheet
+* Ceare Angular application
+```
+nx generate @nrwl/agular:app blablabla
+```
+
 * Create Angular component in the nx workspace
 ```
-ng g component blablabla
+ng g component blablabla --project<projeect name> --dry-run
 ```
 
 ## Usages

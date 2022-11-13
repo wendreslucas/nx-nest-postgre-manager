@@ -21,7 +21,8 @@
       ],
       "@nx-nest-postgre-manager/auth": ["libs/auth/src/index.ts"],
       "@nx-nest-postgre-manager/common": ["libs/common/src/index.ts"],
-      "@nx-nest-postgre-manager/task": ["libs/task/src/index.ts"]
+      "@nx-nest-postgre-manager/task": ["libs/task/src/index.ts"],
+      "@nx-nest-postgre-manager/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

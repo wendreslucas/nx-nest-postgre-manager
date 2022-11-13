@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AccountLoginComponent } from './account-login/account-login.component';
+import { UiModule } from '@nx-nest-postgre-manager/ui';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AccountLoginComponent } from './account-login/account-login.component';
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    UiModule
   ],
 })
 export class AccountModule {}

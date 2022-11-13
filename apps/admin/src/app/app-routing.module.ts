@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () => import('./account/account.module').then(module => module.AccountModule)
-  }
+  },
+  { path: '**', redirectTo: 'account', pathMatch: 'full' },
 ];
 
 @NgModule({
