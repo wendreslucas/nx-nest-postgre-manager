@@ -13,20 +13,14 @@
   margin-bottom: .5em;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  border: 1px solid #878b96;
-  border-radius: .3em;
   .account-list-button {
     width: 5em;
     padding: .5em;
-    margin-right: .5em;
+    margin-left: auto;
     text-align: center;
     border-radius: .5em;
     background-color: #393FC6;
     color: #fff;
-  }
-  .information {
-    padding: .5em;
-    margin-left: auto;
   }
 }
 
@@ -50,13 +44,22 @@
       flex-grow: 1;
       width: 0;
       word-break: break-all;
+      font-weight: 600;
     }
     &.title {
-      font-weight: 600;
+      font-weight: 200;
+      color: #878b96;
       &:hover {
         cursor: default;
         background-color: #fff;
       }
     }
   }
-}  
+}
+
+.information {
+  width: 100px;
+  padding: .5em;
+  margin-left: auto;
+  font-family: 'Open Sans', sans-serif;
+}

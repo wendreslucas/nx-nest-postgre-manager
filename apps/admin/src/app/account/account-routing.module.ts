@@ -12,7 +12,7 @@ const routes: Routes = [
     //canActivate: [AuthGuard],
   },
   { 
-    path: 'chart', 
+    path: 'dashboard', 
     component: AccountChartComponent,
     //canActivate: [AuthGuard],
   },
