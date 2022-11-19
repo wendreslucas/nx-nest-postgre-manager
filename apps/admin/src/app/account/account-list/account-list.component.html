@@ -1,13 +1,19 @@
-<nx-nest-postgre-manager-list></nx-nest-postgre-manager-list>
-<div class="account-container">
-    <div class="account-row">
-        <div class="title item">Name</div>
-        <div class="title item">Mail</div>
-        <div class="title item">Type</div>
-    </div>
-    <div class="account-row" *ngFor="let account of accounts">
-        <div class="item">{{account.name}}</div>
-        <div class="item">{{account.email}}</div>
-        <div class="item">{{account.jobType}}</div>
-    </div>
+<div class="account-list-title">
+  Accounts
+</div>
+<div class="account-list-button-group">
+  <div class="account-list-button">+Mail</div>
+  <div class="information">{{ accounts.length }} accounts</div>
+</div>
+<div class="account-list" content>
+  <div class="account-row title">
+      <div class="title item">Name</div>
+      <div class="title item">Mail</div>
+      <div class="title item">Type</div>
+  </div>
+  <div class="account-row" *ngFor="let account of accounts">
+      <div class="item">{{account.name}}</div>
+      <div class="item">{{account.email}}</div>
+      <div class="item">{{account.jobType}}</div>
+  </div>
 </div>

@@ -22,7 +22,6 @@ export class AccountListComponent {
     // });
     this.accountService.GetAccounts(this.env.username, this.env.password).subscribe((accounts: Account[]) => {
       this.accounts = accounts;
-      console.log(this.accounts)
     })
 
   }

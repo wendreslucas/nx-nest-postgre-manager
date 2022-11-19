@@ -10,6 +10,7 @@ export class AuthService {
   accessTokenSubject: BehaviorSubject<string>;
   accessToken$: Observable<string>;
   private BASE_URL: string;
+  
   constructor(
     private http: HttpClient,
     @Inject(ENV_TOKEN) private env: Env

@@ -1,0 +1,39 @@
+<div class="login-container-background">
+    <div class="login-container">
+      <div class="login-container-panel">
+        <div class="logo">
+          <fa-icon [icon]="faUsers"></fa-icon>
+          <span>Account Manager</span> 
+        </div>
+        <div class="title">Log in</div>
+        <div class="subtitle">Welcome back! Please enter your details.</div>
+        <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="element field">User Name</div>
+          <input class="element field-input" formControlName="userName" type="text">
+          <div class="element field">Password</div>
+          <div class="element field password-container">
+            <input class="element field-input" formControlName="password" [type]="passwordInputType">
+            <span (click)="switchPasswordType()">{{passwordTip}}</span> 
+          </div>
+          <button class="element submit" type="submit" title="signin" [disabled]="!form.valid">
+            Sign in
+          </button>
+          <div class="element err-message" *ngFor="let item of errorMessage()">
+            {{item}}
+          </div>
+        </form>    
+      </div>
+      <div class="footer">
+        © 2022 Copyright Jen-hsuan Hsieh.
+      </div>
+    </div>
+    <div class="advertise-container">
+      <div class="main-statement">
+        Welcome to your account manager
+      </div>
+      <div class="sub-statement">
+        Sign in to explore your members
+      </div>
+    </div>
+  </div>
+  

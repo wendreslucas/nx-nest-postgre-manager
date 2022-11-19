@@ -1,26 +1,62 @@
-.account-container {
-  width: 800px;
-  margin: 0 auto;
-    .account-row {
+.account-list-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-top: 2em;
+  margin-left: .5em;
+}
+
+.account-list-button-group {
+  display: flex;
+  padding: 1em;
+  margin-top: 2em;
+  margin-bottom: .5em;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  border: 1px solid #878b96;
+  border-radius: .3em;
+  .account-list-button {
+    width: 5em;
+    padding: .5em;
+    margin-right: .5em;
+    text-align: center;
+    border-radius: .5em;
+    background-color: #393FC6;
+    color: #fff;
+  }
+  .information {
+    padding: .5em;
+    margin-left: auto;
+  }
+}
+
+.account-list {
+  left: 5em;
+  flex-grow: 1;
+  font-family: 'Open Sans', sans-serif;
+  .account-row {
     display: flex;
+    cursor: pointer;
+    &:hover {
+      background-color: #d0e8ff;
+    }
     &:last-child {
-      border-bottom: 1px solid #000;
+      border-bottom: 1px solid #878b96;
     }
     .item {
       padding: .5em;
       width: 20em;
-      border: 1px solid #000;
-      border-right: none;
-      border-bottom: none;
+      border-top: 1px solid #878b96;
       flex-grow: 1;
       width: 0;
       word-break: break-all;
-      &:last-child {
-        border-right: 1px solid #000;
+    }
+    &.title {
+      font-weight: 600;
+      &:hover {
+        cursor: default;
+        background-color: #fff;
       }
     }
-    .title {
-      font-weight: 600;
-    }
   }
-}
+}  

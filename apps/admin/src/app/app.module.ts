@@ -7,13 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { ENV_TOKEN } from '@nx-nest-postgre-manager/common';
 import { AccountModule } from './account/account.module';
+import { LayoutComponent } from './layout/layout.component';
+import { UiModule } from '@nx-nest-postgre-manager/ui';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AccountModule
+    AccountModule,
+    UiModule
   ],
   providers: [{
     provide: ENV_TOKEN,

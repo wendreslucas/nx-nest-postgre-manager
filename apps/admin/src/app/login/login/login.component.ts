@@ -12,12 +12,13 @@ const KEY_DISPLAY_TITLE_MAP = new Map<string, string>(
     ['password', 'Password']
   ]
 );
+
 @Component({
-  selector: 'nx-nest-postgre-manager-account-login',
-  templateUrl: './account-login.component.html',
-  styleUrls: ['./account-login.component.scss'],
+  selector: 'nx-nest-postgre-manager-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class AccountLoginComponent {
+export class LoginComponent {
   faUsers = faUsers;
   form: FormGroup;
   private showPassword = true;
@@ -78,3 +79,4 @@ export class AccountLoginComponent {
         );
   }
 }
+

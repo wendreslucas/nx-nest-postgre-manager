@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListComponent } from './list/list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+  ],
   declarations: [
-    ListComponent,
     NavbarComponent
   ],
   exports: [
-    ListComponent,
     NavbarComponent
   ]
 })

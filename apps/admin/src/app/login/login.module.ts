@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AccountListComponent } from './account-list/account-list.component';
-import { AccountRoutingModule } from './account-routing.module';
+
+import { LoginRoutingModule } from './login-routing.module';
+import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UiModule } from '@nx-nest-postgre-manager/ui';
-import { AccountChartComponent } from './account-chart/account-chart.component';
+
 
 @NgModule({
   declarations: [
-    AccountListComponent,
-    AccountChartComponent
+    LoginComponent
   ],
   imports: [
     CommonModule,
-    AccountRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    UiModule
-  ],
+    UiModule,
+    LoginRoutingModule
+  ]
 })
-export class AccountModule {}
+export class LoginModule { }

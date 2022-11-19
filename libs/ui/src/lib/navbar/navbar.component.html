@@ -1,1 +1,33 @@
-<p>navbar works!</p>
+<div [ngClass]="getNavbarContainerStyle()">
+  <div class="control-button-container">
+    <div [ngClass]="getNavbarButtonStyle()" (click)="changeNavBarWidth()"><</div>
+  </div>
+  <div class="logo">
+    <fa-icon [icon]="faUsers"></fa-icon>
+  </div>    
+  <div class="navbar-items">
+    <div class="navbar-item-group" *ngFor="let item of navData ; let i = index">
+      <div class="navbar-item-group-title">
+        <div class="navbar-item-group-title-button"
+             [ngClass]="getNavbarItemStyle(i)" 
+             (click)="changeNavBarItem(i)" 
+             *ngIf="!isNavBarFolded">v</div>
+        <fa-icon [icon]="item.icon"></fa-icon>
+        <div class="navbar-item-group-title-text" *ngIf="!isNavBarFolded">{{ item.title }}</div>
+      </div>
+      <ng-container *ngIf="item.isFolded">
+        <div class="navbar-subitem" 
+            [ngClass]="getNavbarSubitemStyle(subItem.id)" 
+            (click)="navaigate(subItem.path)"
+            *ngFor="let subItem of item.children">
+          <ng-container *ngIf="!isNavBarFolded">
+            {{ subItem.title }}
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="footer" *ngIf="!isNavBarFolded">
+    © 2022 Copyright Jen-hsuan Hsieh.
+  </div>
+</div>

@@ -1,0 +1,106 @@
+.navbar-container {
+  width: 15em;
+  height: 100%;
+  background-color: #393FC6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  position: relative;
+  transition: width .5s;
+  font-family: 'Open Sans', sans-serif;
+  &.fold {
+    width: 5em;
+  }
+  .control-button-container {
+    padding: .5em;
+    display: flex;
+    justify-content: flex-end;
+    .control-button {
+      width: 1em;
+      height: 1em;
+      padding: .2em;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 5em;
+      color: #000;
+      background-color: #fff;
+      transition: transform .5s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        background-color: #d0e8ff;
+      }
+      &.fold {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .logo {
+    padding: 1em;
+    padding-top: 3.5em;
+    fa-icon {
+      color: #fff;
+      font-size: 1.3em;
+      padding: .5em;
+      padding-top: .7em;
+      background-color: #000;
+      border-radius: .1em;
+    }
+  }
+  .navbar-items {
+    height: 500px;
+    padding: 1em;
+    margin-top: 2.5em;
+    margin-left: .5em;
+    margin-right: 1em;
+    border-top: 1px solid #000;
+    color: #fff;
+    .navbar-item-group {
+      font-size: 1.1em;
+      font-weight: 600;
+      .navbar-item-group-title {
+        margin-bottom: .5em;
+        padding: .8em;
+        display: flex;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-radius: .5em;
+        .navbar-item-group-title-text {
+          margin-left: .5em;
+        }
+        .navbar-item-group-title-button {
+          margin-right: 1.2em;
+          transform: rotate(0deg);
+          font-size: .8em;
+          color: #878b96;
+          cursor: pointer;
+          transition: transform .5s ease-in-out;
+          &.fold {
+            transform: rotate(-90deg);
+          }
+        }
+      }
+      .navbar-subitem {
+        font-size: .9em;
+        padding-top: .5em;
+        padding-bottom: .5em;
+        padding-left: 3.5em;
+        font-weight: 300;
+        cursor: pointer;
+        border-radius: .5em;
+        color: #878b96;
+        &.current-path {
+          color: #fff;
+        }
+        &:hover {
+          background-color: #d0e8ff;
+          color: #000;
+          opacity: .8;
+        }
+      }
+    }
+  }
+  .footer {
+    padding: 1em;
+    font-size: .8em;
+    position: absolute;
+    bottom: 2em;
+    color: #878b96;
+  }
+}
