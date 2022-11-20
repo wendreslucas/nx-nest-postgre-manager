@@ -3,8 +3,12 @@ import { Response } from 'express';
 
 @Controller()
 export class AppController {
-  @Get()
+  @Get('account/')
   edit(@Res() res: Response) {
       return res.render('account/index.html')
+  }
+  @Get('dashboard/')
+  dashboard(@Res() res: Response) {
+      return res.render('dashboard/index.html')
   }
 }

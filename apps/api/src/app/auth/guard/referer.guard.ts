@@ -16,6 +16,8 @@ export class RefererGuard implements CanActivate {
       allows.push('https://nx-nest-postgre-manager.fly.dev/');
       allows.push('https://daily-learning.herokuapp.com');
       allows.push('https://nx-nest-postgre-manager.fly.dev');
+      allows.push('https://nx-nest-postgre-manager.fly.dev/dashboard/account/list');
+      allows.push('https://nx-nest-postgre-manager.fly.dev/dashboard/account/dashboard');
 
       return allows.find(allow => allow === request.headers['referer']) !== undefined;
     }

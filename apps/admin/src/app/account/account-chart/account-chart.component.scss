@@ -1,0 +1,9 @@
+.dashboard-container {
+  display: flex;  
+  justify-items: center;
+  .dashboard-container-item {
+    width: 600px;
+    border: 1px solid #878b96;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+}

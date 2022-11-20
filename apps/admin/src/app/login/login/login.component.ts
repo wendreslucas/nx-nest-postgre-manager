@@ -71,8 +71,9 @@ export class LoginComponent {
         .subscribe(
           (res: any) => {
             if (res) {
+              //console.log(res)
               this.errorStatusTextForServer = '';
-              this.router.navigate(["/", "list"]);
+              this.router.navigate(["/", "account"]);
             }
           },
           (err: HttpErrorResponse) => this.errorStatusTextForServer = err.statusText

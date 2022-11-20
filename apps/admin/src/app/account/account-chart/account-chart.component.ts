@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-chart.component.scss']
 })
 export class AccountChartComponent implements OnInit {
-
-  constructor() { }
+  options: any;
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }

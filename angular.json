@@ -10,7 +10,6 @@
     "common": "libs/common",
     "nx-nest-postgre-manager": "apps/nx-nest-postgre-manager",
     "nx-nest-postgre-manager-e2e": "apps/nx-nest-postgre-manager-e2e",
-    "task": "libs/task",
     "ui": "libs/ui"
   }
 }

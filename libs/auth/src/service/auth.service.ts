@@ -10,7 +10,8 @@ export class AuthService {
   accessTokenSubject: BehaviorSubject<string>;
   accessToken$: Observable<string>;
   private BASE_URL: string;
-  
+  username = '';
+
   constructor(
     private http: HttpClient,
     @Inject(ENV_TOKEN) private env: Env
@@ -35,6 +36,7 @@ export class AuthService {
       map(res => {
         if (res) {
           this.accessTokenSubject.next(res);
+          this.username = username;
         }
         return res;
       }),

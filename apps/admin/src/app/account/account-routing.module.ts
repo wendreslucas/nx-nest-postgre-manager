@@ -9,12 +9,12 @@ const routes: Routes = [
   { 
     path: 'list', 
     component: AccountListComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   { 
     path: 'dashboard', 
     component: AccountChartComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
 ];
 

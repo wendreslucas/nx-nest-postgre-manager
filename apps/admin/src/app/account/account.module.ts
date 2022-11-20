@@ -7,11 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UiModule } from '@nx-nest-postgre-manager/ui';
 import { AccountChartComponent } from './account-chart/account-chart.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { AccountChartPieComponent } from './account-chart/account-chart-pie/account-chart-pie.component';
 
 @NgModule({
   declarations: [
     AccountListComponent,
-    AccountChartComponent
+    AccountChartComponent,
+    AccountChartPieComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +22,8 @@ import { AccountChartComponent } from './account-chart/account-chart.component';
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    UiModule
+    UiModule,
+    NgxEchartsModule.forChild(),
   ],
 })
 export class AccountModule {}

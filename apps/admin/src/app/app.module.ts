@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { UiModule } from '@nx-nest-postgre-manager/ui';
+import { ENV_TOKEN } from '@nx-nest-postgre-manager/common';
+import { NgxEchartsModule } from 'ngx-echarts';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
-import { ENV_TOKEN } from '@nx-nest-postgre-manager/common';
 import { AccountModule } from './account/account.module';
 import { LayoutComponent } from './layout/layout.component';
-import { UiModule } from '@nx-nest-postgre-manager/ui';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
@@ -16,7 +17,10 @@ import { UiModule } from '@nx-nest-postgre-manager/ui';
     BrowserModule,
     AppRoutingModule,
     AccountModule,
-    UiModule
+    UiModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [{
     provide: ENV_TOKEN,

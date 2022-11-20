@@ -57,7 +57,6 @@ export class NavbarComponent implements OnInit {
   }
 
   navaigate(target: string): void {
-    console.log(target)
     this.route.navigateByUrl(target)
   }
 }
