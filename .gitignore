@@ -43,3 +43,4 @@ views
 ormconfig.env
 .env.development.local
 cheatsheet
+fly-env.sh

@@ -17,6 +17,7 @@ import { AccountModule } from './app/account/account.module';
 import { nestCsrf, CsrfFilter } from 'ncsrf';
 import * as cookieParser from 'cookie-parser'
 import { MailModule } from './app/mail/mail.module';
+import { NotFoundFilter } from './app/service/filter/not-found.filter';
 
 
 async function bootstrap() {
@@ -24,7 +25,8 @@ async function bootstrap() {
     AppModule);
   app.use(cookieParser());
   app.use(nestCsrf());
-  app.useGlobalFilters(new CsrfFilter);
+  app.useGlobalFilters(new CsrfFilter());
+  //app.useGlobalFilters(new NotFoundFilter());
 
   //enable CORS
   app.enableCors();
