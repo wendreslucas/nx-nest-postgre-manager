@@ -9,3 +9,4 @@ readme.md
 .angular
 .vscode
 tests
+fly-env.sh
