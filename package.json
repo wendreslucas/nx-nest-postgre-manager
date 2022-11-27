@@ -4,12 +4,11 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "postbuild": "nx build api --skip-nx-cache && nx build nx-nest-postgre-manager --skip-nx-cache --base-href /account/ --output-hashing none && nx build admin --skip-nx-cache --base-href /dashboard/",
+    "build": "nx build api --skip-nx-cache && nx build nx-nest-postgre-manager --skip-nx-cache --base-href /account/ --output-hashing none && nx build admin --skip-nx-cache --base-href /dashboard/",
     "start": "node dist/apps/api/main",
     "dev:server": "nx run api:serve",
     "dev:widget": "nx run nx-nest-postgre-manager:serve",
     "dev:dashboard": "nx run admin:serve",
-    "build": "nx build",
     "test": "nx test"
   },
   "private": true,

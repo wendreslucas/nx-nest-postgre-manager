@@ -29,6 +29,8 @@ export class AppModule implements DoBootstrap{
 
   ngDoBootstrap() {
     const accountElement = createCustomElement(AccountComponent, { injector: this.injector });
-    customElements.define('dl-account', accountElement);
+    if (!customElements.get('dl-account')) {
+      customElements.define('dl-account', accountElement);
+    }
   }
 }
