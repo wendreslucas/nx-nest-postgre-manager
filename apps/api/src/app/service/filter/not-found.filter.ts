@@ -12,14 +12,10 @@ export class NotFoundFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
   
-    console.log(request.originalUrl.split("/"))
-      
-    if (request.originalUrl.split("/").length > 3) {
-      let paths = request.originalUrl.split("/");
-      console.log(paths)
-      if (paths[3] === "dashabard") {
-        response.redirect([paths[0], paths[1], paths[2], paths[3]].join("/"))
-      }
+    let paths = request.originalUrl.split("/");
+
+    if (paths.length > 0 && paths[1] !== "api") {
+      return response.redirect("/dashboard")
     }
 
     const statusCode = HttpStatus.NOT_FOUND;

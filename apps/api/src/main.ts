@@ -25,8 +25,8 @@ async function bootstrap() {
     AppModule);
   app.use(cookieParser());
   app.use(nestCsrf());
-  app.useGlobalFilters(new CsrfFilter());
-  //app.useGlobalFilters(new NotFoundFilter());
+  //app.useGlobalFilters(new CsrfFilter());
+  app.useGlobalFilters(new NotFoundFilter());
 
   //enable CORS
   app.enableCors();

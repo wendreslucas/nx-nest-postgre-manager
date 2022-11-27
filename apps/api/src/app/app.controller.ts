@@ -4,6 +4,7 @@ import { Response } from 'express';
 @Controller()
 export class AppController {
   @Get('account/')
+  @Get('account/list')
   edit(@Res() res: Response) {
       return res.render('account/index.html')
   }
