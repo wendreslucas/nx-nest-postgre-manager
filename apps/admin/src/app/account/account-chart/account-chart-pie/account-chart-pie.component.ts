@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { AccountChartPieSettingService } from './service/account-chart-pie-setting.service';
 import { AccountChartItemType, AccountChartPieChartSetting } from './service/account-chart-pie.domain';
@@ -12,6 +13,7 @@ import { AccountChartPieService } from './service/account-chart-pie.service';
 export class AccountChartPieComponent implements OnInit {
   options: any;
   constructor(
+    private router: Router, 
     private accountChartService: AccountChartPieService,
     private accountChartSettingService: AccountChartPieSettingService
   ) { 
@@ -22,13 +24,18 @@ export class AccountChartPieComponent implements OnInit {
       this.accountChartService.convertData(),
       this.accountChartSettingService.getSetting()
     ])
-    .subscribe(([
-      data, 
-      option
-    ]: any) => {
-      (option as AccountChartPieChartSetting).series[0].data = data.items;
-      (option as AccountChartPieChartSetting).legend.data = data.items.map((item: AccountChartItemType) => item.name); 
-      this.options = option;
-    })
+    .subscribe(
+      ([
+        data, 
+        option
+      ]: any) => {
+        (option as AccountChartPieChartSetting).series[0].data = data.items;
+        (option as AccountChartPieChartSetting).legend.data = data.items.map((item: AccountChartItemType) => item.name); 
+        this.options = option;
+      },
+      (err) => {
+        console.log(err);
+        this.router.navigate(["/", "login"]);
+      })
   }
 }

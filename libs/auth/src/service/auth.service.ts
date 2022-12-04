@@ -7,8 +7,6 @@ import { Env, ENV_TOKEN } from '@nx-nest-postgre-manager/common';
   providedIn: 'root'
 })
 export class AuthService {
-  accessTokenSubject: BehaviorSubject<string>;
-  accessToken$: Observable<string>;
   private BASE_URL: string;
   username = '';
 
@@ -17,8 +15,6 @@ export class AuthService {
     @Inject(ENV_TOKEN) private env: Env
   ) {
     this.BASE_URL = `${this.env.baseApiPrefix}/auth`;
-    this.accessTokenSubject = new BehaviorSubject('');
-    this.accessToken$ = this.accessTokenSubject.asObservable();
   }
 
   FetchToken(username: string, password: string): Observable<string> {
@@ -35,7 +31,6 @@ export class AuthService {
     return this.FetchToken(username, password).pipe(
       map(res => {
         if (res) {
-          this.accessTokenSubject.next(res);
           this.username = username;
         }
         return res;

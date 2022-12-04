@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AuthService } from '@nx-nest-postgre-manager/auth';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +19,14 @@ export class AuthGuard implements CanActivate {
   }
   
   canEnter(): Observable<boolean> {
-    return this.authService.accessTokenSubject.pipe(
-      map((isLogin) => {
-        if (!isLogin) {
-          this.router.navigate(["/", "login"]);
-        }
-        return !!isLogin;
-      })
-    );
+    return of(true);
+    // return this.authService.accessTokenSubject.pipe(
+    //   map((isLogin) => {
+    //     if (!isLogin) {
+    //       this.router.navigate(["/", "login"]);
+    //     }
+    //     return !!isLogin;
+    //   })
+    // );
   }
 }

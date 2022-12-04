@@ -4,7 +4,7 @@ import { IAccount } from '@nx-nest-postgre-manager/api-interfaces';
 import { catchError, concatMap, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
 import { Account } from '../model/account.model';
 import { Env, ENV_TOKEN } from '@nx-nest-postgre-manager/common';
-import { AuthService } from '@nx-nest-postgre-manager/auth';
+import { AuthService, AuthUser } from '@nx-nest-postgre-manager/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,15 @@ export class AccountService {
     this.BASE_URL = `${this.env.baseApiPrefix}/account`;
   }
 
-  GetCsrfToken(accessToken: string): Observable<string> {
-    const headers = new HttpHeaders({
+  GetCsrfToken(accessToken?: string): Observable<string> {
+    let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${accessToken}`
     });
+    if (accessToken) {
+      Object.assign(headers, {
+        'Authorization': `Bearer ${accessToken}`
+      });  
+    }
 
     const options = { headers: headers };
     return this.http.get<any>(`${this.BASE_URL}/csrf-token`, options).pipe(
@@ -31,47 +35,42 @@ export class AccountService {
     );
   }
 
-  private addAuthHeader(username: string, password: string, func: (header: HttpHeaders) => Observable<any>): Observable<any> {
-    let accessToken: string | null;
-    return this.authService.FetchToken(username, password).pipe(
-      tap(token => accessToken = token),
-      concatMap((token: string) => {
-        return this.GetCsrfToken(token)
-      }),
-      concatMap((csrfToken: string) => {
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
-          'csrf-token': `${csrfToken}`
-        });
-        return func(headers);
-      }),
-      catchError(err => {
-        console.log(err);
-        return of(err);
-      })
-    )
+  private addAuthHeader(func: (header: HttpHeaders) => Observable<any>, authUer?: AuthUser): Observable<any> {
+    if (authUer) {
+      let accessToken: string | null;
+      return this.authService.FetchToken(authUer.username, authUer.password).pipe(
+        tap(token => accessToken = token),
+        concatMap((token: string) => {
+          return this.GetCsrfToken(token)
+        }),
+        concatMap((csrfToken: string) => {
+          const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+            'csrf-token': `${csrfToken}`
+          });
+          return func(headers);
+        }),
+        catchError(err => {
+          console.log(err);
+          return of(err);
+        })
+      ) 
+    } else {
+      return this.GetCsrfToken().pipe(
+        switchMap((csrfToken) => {
+          const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'csrf-token': `${csrfToken}`
+          });
+          return func(headers);
+        })
+      );
+    }
   }
 
-  private addAuthHeaderByToken(token: string, func: (header: HttpHeaders) => Observable<any>): Observable<any> {
-    return this.GetCsrfToken(token).pipe(
-      concatMap((csrfToken: string) => {
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'csrf-token': `${csrfToken}`
-        });
-        return func(headers);
-      }),
-      catchError(err => {
-        console.log(err);
-        return of(err);
-      })
-    )
-  }
-
-  CreateAccount(username: string, password: string, account: Account): Observable<Account | string> {
-    return this.addAuthHeader(username, password, (headers) => {
+  CreateAccount(account: Account, authUer?: AuthUser): Observable<Account | string> {
+    return this.addAuthHeader((headers) => {
       return this.http.post<IAccount>(this.BASE_URL, account, { headers: headers }).pipe(
         map(account => Object.assign(
           new Account(), {
@@ -84,28 +83,17 @@ export class AccountService {
           return of(err)
         })
       );
-    })
+    }, authUer)
   }
 
-  GetAccounts(username: string, password: string): Observable<Account[]> {
-    return this.addAuthHeader(username, password, (headers) => {
-      return this.http.get<IAccount[]>(this.BASE_URL, { headers: headers }).pipe(
+  GetAccounts(authUer?: AuthUser): Observable<Account[]> {
+    return this.addAuthHeader((headers) => {
+      return this.http.get<IAccount[]>(this.BASE_URL, { headers: headers}).pipe(
         catchError(err => {
           console.log(err)
           return of(err)
         })
       );
-    })
-  }
-
-  GetAccountsByToken(token: string): Observable<Account[]> {
-    return this.addAuthHeaderByToken(token, (headers) => {
-      return this.http.get<IAccount[]>(this.BASE_URL, { headers: headers }).pipe(
-        catchError(err => {
-          console.log(err)
-          return of(err)
-        })
-      );
-    })
+    }, authUer)
   }
 }
