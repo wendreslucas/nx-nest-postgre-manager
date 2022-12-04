@@ -1,0 +1,13 @@
+.layout-container {
+    display: flex;
+    height: 100%;
+    .layout-container-navbar {
+      height: 100%;  
+      border-right: 1px solid #878b96;
+    }
+    .layout-container-content {
+      margin: 0 auto;
+      flex-grow: 1;
+      margin: .3em;
+    }
+  }

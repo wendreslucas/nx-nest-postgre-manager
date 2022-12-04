@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   imports: [
@@ -11,11 +12,13 @@ import { HeaderComponent } from './header/header.component';
   ],
   declarations: [
     NavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    LayoutComponent
   ],
   exports: [
     NavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    LayoutComponent
   ]
 })
 export class UiModule {}
