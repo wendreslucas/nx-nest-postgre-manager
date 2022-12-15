@@ -11,6 +11,8 @@ import { Csrf } from "ncsrf";
 import { MailService } from '../../mail/mail.service';
 import { MailDto } from '../../mail/dto/mail.dto';
 import { RefererGuard } from '../../auth/guard/referer.guard';
+import RoleGuard from '../service/guard/role-guard';
+import { Role } from '../../user/dto/user.dto';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
@@ -27,16 +29,16 @@ export class AccountController {
   */
   @ApiQuery({ name: 'tasktype', enum: TaskType })
   @ApiQuery({ name: 'email' })
-  @UseGuards(RefererGuard)
+  @UseGuards(RefererGuard, RoleGuard(Role.Dashboard))
   @Csrf()
   @Get()
-  async GetAccountsByTaskType(@Query() query): Promise<Account[]> {
+  async getAccountsByTaskType(@Query() query): Promise<Account[]> {
     if (query.tasktype) {
-      return await this.accountService.GetAccountsByTaskType(query.tasktype);
+      return await this.accountService.getAccountsByTaskType(query.tasktype);
     } else if (query.email) {
-      return await this.accountService.GetAccountByMail(query.email);
+      return await this.accountService.getAccountByMail(query.email);
     } else {
-      return await this.accountService.GetAllAccounts();
+      return await this.accountService.getAllAccounts();
     }
   }
 
@@ -44,7 +46,7 @@ export class AccountController {
   Get CSRF token
   */
   @Get('csrf-token')
-  GetCsrfToken(@Req() req): any {
+  getCsrfToken(@Req() req): any {
     return this.csrfService.GetCsrfToken(req);
   }
 
@@ -54,9 +56,9 @@ export class AccountController {
   // @Csrf()
   @ApiBody({ type: AccountDto})
   @Post()
-  @UseGuards(RefererGuard)
-  async CreateAccount(@Body() accountDto: AccountDto) {
-    const res = await this.accountService.GetAccountByMail(accountDto.email);
+  @UseGuards(RefererGuard, RoleGuard(Role.Widget))
+  async createAccount(@Body() accountDto: AccountDto) {
+    const res = await this.accountService.getAccountByMail(accountDto.email);
     if (res.length !== 0) {
       throw new NotAcceptableException('This email has ready in used!');
     }
@@ -68,7 +70,7 @@ export class AccountController {
           recipient: accountDto.email
         })
     );
-    return await this.accountService.AddAccount(accountDto)
+    return await this.accountService.addAccount(accountDto)
   }
 
   /*
@@ -76,10 +78,10 @@ export class AccountController {
   */
   @ApiBody({ type: RegisteredTaskDto})
   @Post('registertask')
-  async AddRegisteredTaskFromAccount(
+  async addRegisteredTaskFromAccount(
     @Body() registeredTaskDto: RegisteredTaskDto,
   ) {
-    return await this.accountService.AddRegisteredTaskFromAccount(
+    return await this.accountService.addRegisteredTaskFromAccount(
       registeredTaskDto,
     );
   }
@@ -89,10 +91,10 @@ export class AccountController {
   */
   @ApiBody({ type: RegisteredTaskDto})
   @Post('unregistertask')
-  async RemoveRegisteredTaskFromAccount(
+  async removeRegisteredTaskFromAccount(
     @Body() registeredTaskDto: RegisteredTaskDto,
   ) {
-    return await this.accountService.RemoveRegisteredTaskFromAccount(
+    return await this.accountService.removeRegisteredTaskFromAccount(
       registeredTaskDto,
     );
   }
@@ -103,7 +105,7 @@ export class AccountController {
   @ApiQuery({ name: 'email' })
   @Csrf()
   @Delete()
-  DeleteAccount(@Query() query): Promise<Account[]> {
-    return this.accountService.DeleteAccount(query.mail);
+  deleteAccount(@Query() query): Promise<Account[]> {
+    return this.accountService.deleteAccount(query.mail);
   }
 }

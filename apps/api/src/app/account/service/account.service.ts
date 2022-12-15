@@ -16,7 +16,7 @@ export class AccountService {
     private registeredTaskService: RegisteredTaskService,
   ) {}
 
-  async AddRegisteredTaskFromAccount(
+  async addRegisteredTaskFromAccount(
     data: RegisteredTaskDto,
   ): Promise<Account | undefined> {
     const existedAccounts = await this.accountRepo.find({
@@ -48,7 +48,7 @@ export class AccountService {
     return await this.accountRepo.save(existedAccounts[0]);
   }
 
-  async RemoveRegisteredTaskFromAccount(data: RegisteredTaskDto) {
+  async removeRegisteredTaskFromAccount(data: RegisteredTaskDto) {
     const existedAccounts = await this.accountRepo.find({
       where: { email: data.email },
       relations: ['registeredTasks'],
@@ -62,7 +62,7 @@ export class AccountService {
     return await this.accountRepo.save(existedAccounts[0]);
   }
 
-  async AddAccount(data: AccountDto): Promise<Account> {
+  async addAccount(data: AccountDto): Promise<Account> {
     const account = Object.assign(new Account(), {
       email: data.email,
       name: data.name,
@@ -73,13 +73,13 @@ export class AccountService {
     return await this.accountRepo.save(account);
   }
 
-  async GetAllAccounts(): Promise<Account[]> {
+  async getAllAccounts(): Promise<Account[]> {
     return await this.accountRepo.find({
       relations: ['registeredTasks'],
     });
   }
 
-  async GetAccountsByTaskType(taskType: TaskType): Promise<Account[]> {
+  async getAccountsByTaskType(taskType: TaskType): Promise<Account[]> {
     const accounts = await this.accountRepo.find({
       relations: ['registeredTasks'],
     });
@@ -93,17 +93,17 @@ export class AccountService {
     return res;
   }
 
-  async GetAccountByMail(mail: string): Promise<Account[]> {
+  async getAccountByMail(mail: string): Promise<Account[]> {
     return await this.accountRepo.find({
       where: { email: mail },
       relations: ['registeredTasks'],
     });
   }
 
-  async DeleteAccount(mail: string): Promise<Account[]> {
+  async deleteAccount(mail: string): Promise<Account[]> {
     await this.accountRepo.delete({
        email: mail
     });
-    return await this.GetAccountByMail(mail);
+    return await this.getAccountByMail(mail);
   }
 }

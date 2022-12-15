@@ -1,13 +1,13 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { IUser } from "@nx-nest-postgre-manager/api-interfaces";
-import { IsNotEmpty } from "class-validator";
+
+export enum Role {
+  Dashboard = 'Dashboard',
+  Widget = 'Widget',
+}
 
 export class UserDto implements IUser {
-    @IsNotEmpty()
-    @ApiProperty()
-    username: string;
-
-    @IsNotEmpty()
-    @ApiProperty()
-    password: string;
+  username: string;
+  password: string;
+  role: Role;
+  refreshToken?: string;
 }
