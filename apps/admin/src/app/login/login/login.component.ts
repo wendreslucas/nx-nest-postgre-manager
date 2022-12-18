@@ -67,16 +67,15 @@ export class LoginComponent {
     let userName = this.form.get('userName')?.value;
     let password = this.form.get('password')?.value;
     
-    this.authService.Login(userName, password)
+    this.authService.login(userName, password)
         .subscribe(
           (res: any) => {
             if (res) {
-              //console.log(res)
               this.errorStatusTextForServer = '';
               this.router.navigate(["/", "account"]);
             }
           },
-          (err: HttpErrorResponse) => this.errorStatusTextForServer = err.statusText
+          (err: HttpErrorResponse) => this.errorStatusTextForServer = err.error
         );
   }
 }

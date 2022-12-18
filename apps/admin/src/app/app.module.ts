@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 import { UiModule } from '@nx-nest-postgre-manager/ui';
-import { ENV_TOKEN } from '@nx-nest-postgre-manager/common';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AppRoutingModule } from './app-routing.module';
-import { environment } from '../environments/environment';
 import { AccountModule } from './account/account.module';
 import { LayoutComponent } from './layout/layout.component';
+import { httpInterceptorProvider } from './service/http/http-interceptor-provider';
+import { envProvider } from './service/env/env.provider';
+import { httpConfigProvider } from './service/http/http-config-provider';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
@@ -22,10 +22,11 @@ import { LayoutComponent } from './layout/layout.component';
       echarts: () => import('echarts')
     })
   ],
-  providers: [{
-    provide: ENV_TOKEN,
-    useValue: environment
-  }],
+  providers: [
+    envProvider,
+    httpConfigProvider,
+    httpInterceptorProvider
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

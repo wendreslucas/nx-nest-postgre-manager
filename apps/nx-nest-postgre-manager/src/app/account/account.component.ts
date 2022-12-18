@@ -4,8 +4,7 @@ import { JobType } from '@nx-nest-postgre-manager/api-interfaces';
 
 import { faEnvelope, faCheck, faExclamationTriangle, faSpinner, faX } from '@fortawesome/free-solid-svg-icons';
 import { Env, ENV_TOKEN } from '@nx-nest-postgre-manager/common';
-import { AccountService } from '@nx-nest-postgre-manager/account';
-import { AuthUser } from '@nx-nest-postgre-manager/auth';
+import { AccountService, AuthUser } from '@nx-nest-postgre-manager/account';
 
 @Component({
   selector: 'nx-nest-postgre-manager-account',
@@ -66,30 +65,30 @@ export class AccountComponent implements OnInit{
   onSubmit() {
     this.hasSendRequest = true;
     if (this.env.username && this.env.password) {
-    this.accountService.CreateAccount(
-      this.accountForm.value, 
-      Object.assign(new AuthUser(), {
-        username: this.env.username, 
-        password: this.env.password, 
-      })
-    )
-    .subscribe(
-      (res: any) => {
-        if (res && res.error) {
+      this.accountService.createAccount(
+        this.accountForm.value, 
+        Object.assign(new AuthUser(), {
+          username: this.env.username, 
+          password: this.env.password, 
+        })
+      )
+      .subscribe(
+        (res: any) => {
+          if (res && res.error) {
+            this.isFailed = true;
+            console.error(res)
+            return;
+          }
+          this.isSuccessful = true;
+        },
+        (err) => {
+          console.error(err);
           this.isFailed = true;
-          console.error(res)
-          return;
         }
-        this.isSuccessful = true;
-      },
-      (err) => {
-        console.error(err);
-        this.isFailed = true;
-      }
-    );
-  } else {
-    console.error('Please set the username and password in env variables');
-  }
+      );
+    } else {
+      console.error('Please set the username and password in env variables');
+    }
   }
 
 }

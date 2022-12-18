@@ -11,7 +11,7 @@ export class AccountChartPieService {
   constructor(private accountService: AccountService) { }
 
   convertData(): Observable<AccountChart> {
-    return this.accountService.GetAccounts()
+    return this.accountService.getAccounts()
     .pipe(
       map((accounts: Account[]) => {
         let accountMap = new Map<JobType, number>([]);

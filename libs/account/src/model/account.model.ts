@@ -1,9 +1,14 @@
-import { IAccount, JobType } from '@nx-nest-postgre-manager/api-interfaces';
+import { IAccount, IUser, JobType } from '@nx-nest-postgre-manager/api-interfaces';
 
 export class Account implements IAccount{
   name: string;
   email: string;
   jobType: JobType;
+}
+
+export class AuthUser implements IUser{
+  username: string;
+  password: string;
 }
 
 export enum AccountPasswordInputType {

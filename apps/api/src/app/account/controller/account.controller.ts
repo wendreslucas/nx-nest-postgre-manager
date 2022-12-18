@@ -1,10 +1,9 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, NotAcceptableException, Param, Post, Query, Req, Res, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, NotAcceptableException, Param, Post, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiQuery } from '@nestjs/swagger';
 import { TaskType } from '@nx-nest-postgre-manager/api-interfaces';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 import { Account } from '../../database/entity/account/accont.entity';
 import { RegisteredTaskDto } from '../../registered-task/dto/registered-task.dto';
-import { CsrfService } from '../../service/csrf.service';
 import { AccountDto } from '../dto/account.dto';
 import { AccountService } from '../service/account.service';
 import { Csrf } from "ncsrf";
@@ -20,7 +19,6 @@ import { Role } from '../../user/dto/user.dto';
 export class AccountController {
   constructor(
     private accountService: AccountService,
-    private csrfService: CsrfService,
     private mailService: MailService
   ) { }
 
@@ -43,14 +41,6 @@ export class AccountController {
   }
 
   /*
-  Get CSRF token
-  */
-  @Get('csrf-token')
-  getCsrfToken(@Req() req): any {
-    return this.csrfService.GetCsrfToken(req);
-  }
-
-  /*
   Create a new account
   */
   // @Csrf()
@@ -60,7 +50,7 @@ export class AccountController {
   async createAccount(@Body() accountDto: AccountDto) {
     const res = await this.accountService.getAccountByMail(accountDto.email);
     if (res.length !== 0) {
-      throw new NotAcceptableException('This email has ready in used!');
+      throw new BadRequestException('This email has ready in used!');
     }
     this.mailService.sendCustomizedMail(
       Object.assign(

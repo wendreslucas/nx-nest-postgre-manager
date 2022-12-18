@@ -6,8 +6,8 @@ import { AccountModule } from './account/account.module';
 import { createCustomElement } from '@angular/elements';
 import { AccountComponent } from './account/account.component';
 import { APP_BASE_HREF } from '@angular/common';
-import { environment } from '../environments/environment';
-import { ENV_TOKEN } from '@nx-nest-postgre-manager/common';
+import { httpConfigProvider } from './service/http/http-config-provider';
+import { envProvider } from './service/env/env.provider';
 
 @NgModule({
   declarations: [],
@@ -16,10 +16,10 @@ import { ENV_TOKEN } from '@nx-nest-postgre-manager/common';
     {
       provide: APP_BASE_HREF,
       useValue: '/'
-    }, {
-      provide: ENV_TOKEN,
-      useValue: environment
-    }],
+    },
+    envProvider,
+    httpConfigProvider
+  ],
   bootstrap: []
 })
 export class AppModule implements DoBootstrap{

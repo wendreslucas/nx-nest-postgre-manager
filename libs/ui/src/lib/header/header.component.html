@@ -1,1 +1,17 @@
-<div class="username">{{ getDisplayName() }}</div>
+<div class="navbar-container">
+  <div class="navbar-control-container">
+    <div class="username" (click)="toggleInfo()">{{ getDisplayName() }}</div>
+    <div class="info" *ngIf="shouldShowInfo">
+      <div class="info-item-container username-container">
+        <div class="username">{{ getDisplayName() }}</div>
+        <div class="info-content">{{ username }}</div>
+      </div>
+      <div class="info-item-container">
+        <div class="logo">
+          <fa-icon [icon]="faSignOut"></fa-icon>
+        </div>    
+        <div class="info-content logout" (click)="logout()" >Logout</div>
+      </div>
+    </div>
+  </div>
+</div>

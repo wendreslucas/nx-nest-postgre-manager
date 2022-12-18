@@ -7,24 +7,21 @@ import { Account, AccountService } from '@nx-nest-postgre-manager/account';
   templateUrl: './account-list.component.html',
   styleUrls: ['./account-list.component.scss'],
 })
-export class AccountListComponent implements OnInit{
+export class AccountListComponent {
   accounts: Account[] = [];
-  constructor(
-    private router: Router, 
-    private accountService: AccountService
-  ) {
+
+  constructor(private accountService: AccountService) {
+    this.initAccounts();
   }
 
-  ngOnInit(): void {
+  initAccounts() {
     this.accountService
-    .GetAccounts()
-    .subscribe((accounts: Account[]) => {
-      this.accounts = accounts;
-    },
-    (err) => {
-      console.log(err);
-      this.router.navigate(["/", "login"]);
-    });
+    .getAccounts()
+    .subscribe(
+      (accounts: Account[]) => {
+        this.accounts = accounts;
+      }
+    );
   }
 
 }
