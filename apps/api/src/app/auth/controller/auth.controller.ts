@@ -25,8 +25,7 @@ export class AuthController {
   ) {
     const authToken = await this.authService.login(req);
     this.authService.storeTokenInCookie(res, authToken);
-    res.status(200).send({message: 'ok'});
-    return;
+    return authToken;
   }
 
   @UseGuards(JwtAuthGuard)
