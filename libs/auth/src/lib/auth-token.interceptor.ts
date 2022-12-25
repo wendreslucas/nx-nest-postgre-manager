@@ -24,11 +24,12 @@ export class AuthTokenInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    
     return next.handle(request).pipe(
       catchError(error => {
         if (error instanceof HttpErrorResponse && 
             error.status === 401 && 
-            request.url.split('/').find(path => path !== this.httpConfig.loginUrl)) {
+            !request.url.split('/').find(path => path === this.httpConfig.loginUrl)) {
           return this.Handle401Error(error, request, next);
         }
         return throwError(error)
