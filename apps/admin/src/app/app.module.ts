@@ -10,6 +10,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { httpInterceptorProvider } from './service/http/http-interceptor-provider';
 import { envProvider } from './service/env/env.provider';
 import { httpConfigProvider } from './service/http/http-config-provider';
+import { httpAuthTokenInterceptorProvider } from './service/http/http-auth-token-interceptor-provider';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
@@ -25,6 +26,7 @@ import { httpConfigProvider } from './service/http/http-config-provider';
   providers: [
     envProvider,
     httpConfigProvider,
+    httpAuthTokenInterceptorProvider,
     httpInterceptorProvider
   ],
   bootstrap: [AppComponent],
