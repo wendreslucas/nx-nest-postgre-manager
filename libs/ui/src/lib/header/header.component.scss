@@ -7,7 +7,7 @@
     margin-left: auto;
     margin-right: 0.5em;
     .info {
-      width: 100%;
+      width: 95%;
       height: 200px;
       background-color: #fff;
       border: 1px solid #878b96;
@@ -15,7 +15,7 @@
       border-radius: .2em;
       position: relative;
       z-index: 2;
-      margin-top: .2em;
+      margin-top: .2em;;
       padding: .4em;
       .username-container {
         border-bottom: 1px solid #878b96;
@@ -48,7 +48,7 @@
 
 .username {
   cursor: pointer;
-  border: 1px solid #000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   border-radius: 5em;
   width: 50px;
   height: 100%;
@@ -58,4 +58,8 @@
   color: #fff;
   background-color: #393FC6;
   font-family: 'Open Sans', sans-serif;
+  &:hover {
+    background-color: #d0e8ff;
+    color: #000;
+  }
 }

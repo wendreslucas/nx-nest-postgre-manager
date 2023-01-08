@@ -4,6 +4,9 @@ export class Account implements IAccount{
   name: string;
   email: string;
   jobType: JobType;
+
+  //virtual
+  isSelected: boolean;
 }
 
 export class AuthUser implements IUser{

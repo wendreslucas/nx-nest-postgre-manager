@@ -2,7 +2,9 @@
   Accounts
 </div>
 <div class="account-list-button-group">
-  <div class="account-list-button">+Mail</div>
+  <div 
+    class="account-list-button"
+    (click)="test()">+Mail</div>
 </div>
 <nx-nest-postgre-manager-spinner></nx-nest-postgre-manager-spinner>
 <div class="account-list" content>
@@ -10,11 +12,20 @@
       <div class="title item">Name</div>
       <div class="title item">Mail</div>
       <div class="title item">Type</div>
+      <div class="title item"></div>
   </div>
   <div class="account-row" *ngFor="let account of accounts">
       <div class="item">{{account.name}}</div>
       <div class="item">{{account.email}}</div>
       <div class="item">{{account.jobType}}</div>
+      <div class="item">
+        <input 
+          id={{account.name}}
+          class='switch'
+          type='checkbox'
+          [(ngModel)]="account.isSelected" /> 
+        <label for={{account.name}}></label>
+      </div>    
   </div>
 </div>
 <div class="information">{{ accounts.length }} accounts</div>

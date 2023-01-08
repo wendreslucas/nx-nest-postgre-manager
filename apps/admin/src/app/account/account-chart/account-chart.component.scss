@@ -1,9 +1,17 @@
+.dashboard-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin-left: 2em;
+}
+
 .dashboard-container {
   display: grid;  
   justify-items: center;
   .dashboard-container-item {
     width: 600px;
-    border: 1px solid #878b96;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
 }

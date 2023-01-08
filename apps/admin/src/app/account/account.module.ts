@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AccountListComponent } from './account-list/account-list.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UiModule } from '@nx-nest-postgre-manager/ui';
 import { AccountChartComponent } from './account-chart/account-chart.component';
@@ -21,6 +21,7 @@ import { AccountChartPieComponent } from './account-chart/account-chart-pie/acco
     AccountRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
+    FormsModule,
     ReactiveFormsModule,
     UiModule,
     NgxEchartsModule.forChild(),

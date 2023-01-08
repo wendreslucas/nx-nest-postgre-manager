@@ -44,8 +44,9 @@ export class AccountService {
 
   getAccounts(authUer?: AuthUser): Observable<Account[]> {
     return this.addAuthHeader((headers) => {
-      return this.http.get<IAccount[]>(this.BASE_URL, { headers})
+      return this.http.get<Account[]>(this.BASE_URL, { headers})
       .pipe(
+        map((accounts: Account[]) => this.convertList(accounts)),
         catchError(err => {
           console.log(err)
           return of([])
@@ -91,4 +92,18 @@ export class AccountService {
       );
     }
   }
+
+
+  private convertList(accounts: Account[]): Account[] {
+    return accounts.map((account: Account) => this.convert(account));
+  }
+
+  private convert(account: Account): Account {
+    //initial virtual fields
+    const newData = Object.assign(new Account(), account);
+    newData.isSelected = false;
+
+    return newData;
+  }
+
 }

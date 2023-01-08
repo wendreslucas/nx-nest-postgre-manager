@@ -14,12 +14,17 @@ export class AccountListComponent {
     this.initAccounts();
   }
 
+  test() {
+    console.log(this.accounts)
+  }
+
   initAccounts() {
     this.accountService
     .getAccounts()
     .subscribe(
       (accounts: Account[]) => {
         this.accounts = accounts;
+        //this.accounts.forEach((account: Account) => { account.isSelected = true})
       }
     );
   }
