@@ -1,7 +1,8 @@
 .navbar-container {
   height: 50px;
-  padding: .1em;
+  padding: .5em;
   z-index: 2;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   .navbar-control-container {
     width: 180px;
     margin-left: auto;
